@@ -1,0 +1,62 @@
+name: PubChem API Rate Limits
+description: PubChem enforces request volume limitations to ensure fair access and service stability for all users. Rate limits apply per IP address. An NCBI API key increases the allowed rate. Very large data retrieval tasks should use FTP bulk downloads rather than the API.
+
+url: https://pubchem.ncbi.nlm.nih.gov/docs/programmatic-access#section=Request-Volume-Limitations
+
+limits:
+
+  - name: Anonymous Request Rate
+    description: Maximum number of API requests per second for users without an NCBI API key, enforced per IP address.
+    value: 5
+    unit: requests per second
+    scope: per IP address
+    tier: anonymous
+    enforcement: HTTP 429 Too Many Requests response when exceeded; repeated violation may result in IP blocking.
+
+  - name: API Key Request Rate
+    description: Maximum number of API requests per second for users providing a valid NCBI API key via the api_key query parameter.
+    value: 10
+    unit: requests per second
+    scope: per API key
+    tier: registered
+    enforcement: HTTP 429 Too Many Requests response when exceeded; repeated violation may result in key suspension.
+
+  - name: Asynchronous Search Timeout
+    description: Maximum time allowed for asynchronous structure search queries (substructure, similarity, superstructure) to complete before the result expires.
+    value: 30
+    unit: seconds
+    scope: per query
+    tier: all
+    enforcement: Expired queries return an error; the search must be resubmitted.
+
+  - name: Response Size
+    description: Individual API responses may be limited for very large result sets. Pagination or listkey-based retrieval is used for large compound lists.
+    value: 10000
+    unit: records per response (default)
+    scope: per request
+    tier: all
+    enforcement: Results paginated; use MaxRecords parameter to control page size.
+
+policies:
+  - name: Off-Peak Scheduling
+    description: Large batch jobs should run on weekends or between 9 PM and 5 AM Eastern Time on weekdays to minimize impact on other users.
+    url: https://www.ncbi.nlm.nih.gov/books/NBK25497/
+
+  - name: Tool and Email Registration
+    description: Scripts that make large volumes of requests should include the tool and email parameters in requests so NCBI can contact developers before blocking if issues arise.
+    url: https://www.ncbi.nlm.nih.gov/books/NBK25497/
+
+  - name: IP Blocking
+    description: Persistent violations of rate limits or usage policies may result in the requesting IP address being blocked from accessing NCBI services.
+    url: https://www.ncbi.nlm.nih.gov/books/NBK25497/
+
+  - name: Bulk Data Alternative
+    description: For very large-scale data retrieval (millions of records), FTP bulk downloads are recommended instead of the API to avoid rate limit issues.
+    url: https://ftp.ncbi.nlm.nih.gov/pubchem/
+
+api_key:
+  description: NCBI API keys are free and available to anyone with an NCBI account. The key is passed as an api_key query parameter.
+  registration_url: https://www.ncbi.nlm.nih.gov/account/
+  parameter_name: api_key
+  parameter_location: query
+  documentation_url: https://www.ncbi.nlm.nih.gov/books/NBK25497/#chapter2.Usage_Guidelines_and_Requirements

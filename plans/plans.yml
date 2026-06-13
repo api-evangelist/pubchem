@@ -1,0 +1,64 @@
+name: PubChem API Plans
+description: PubChem is a free, open-access service provided by the National Center for Biotechnology Information (NCBI), a division of the National Library of Medicine (NLM) at the U.S. National Institutes of Health (NIH). There are no paid plans or subscription tiers. All APIs are publicly available without charge. An optional NCBI API key can be registered to increase rate limits.
+
+plans:
+
+  - name: Anonymous Access
+    description: Default access for all users without an NCBI account or API key. Suitable for exploration, development, and low-volume applications.
+    url: https://pubchem.ncbi.nlm.nih.gov/docs/programmatic-access
+    type: free
+    pricing:
+      - price: 0
+        currency: USD
+        period: month
+    features:
+      - Full access to PUG REST API
+      - Full access to PUG View API
+      - Full access to PUG SOAP API
+      - Structure image generation
+      - Identifier exchange service
+      - Substructure and similarity search
+      - No authentication required
+    limits:
+      - name: Request Rate
+        value: 5
+        unit: requests per second per IP
+      - name: Data Access
+        value: unlimited
+        unit: records
+      - name: Download Size
+        value: unlimited
+        unit: bytes
+
+  - name: Registered API Key Access
+    description: Access using an NCBI API key registered through an NCBI user account. Provides increased request rate limits for higher-volume programmatic access. Required for large-scale data retrieval and production applications.
+    url: https://www.ncbi.nlm.nih.gov/account/
+    type: free
+    pricing:
+      - price: 0
+        currency: USD
+        period: month
+    features:
+      - All features from Anonymous Access
+      - Higher request rate limit (10 requests per second)
+      - API key passed as api_key query parameter
+      - One API key per NCBI account
+      - Priority processing for batch requests
+      - Ability to request further rate limit increases
+    limits:
+      - name: Request Rate
+        value: 10
+        unit: requests per second
+      - name: Data Access
+        value: unlimited
+        unit: records
+      - name: Download Size
+        value: unlimited
+        unit: bytes
+
+notes:
+  - PubChem is a U.S. government service funded by NIH/NLM; there are no commercial tiers or paid plans.
+  - Large batch jobs should be run during off-peak hours (weekends or 9 PM to 5 AM Eastern Time on weekdays).
+  - Excessive use that impacts service availability may result in IP-based throttling or blocking.
+  - For very large data needs, FTP bulk downloads are available at ftp://ftp.ncbi.nlm.nih.gov/pubchem/.
+  - Academic and commercial users are equally welcome at no cost.

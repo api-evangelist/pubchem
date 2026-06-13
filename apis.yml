@@ -1,0 +1,249 @@
+name: PubChem
+description: PubChem is NCBI's open chemistry database containing information on more than 100 million chemical compounds. It provides REST and view APIs for searching chemical structures, retrieving molecular properties, bioactivity data, safety information, and drug information. PubChem integrates data from hundreds of data sources and is freely accessible without authentication for standard use.
+image: https://pubchem.ncbi.nlm.nih.gov/favicon.ico
+tags:
+  - Chemistry
+  - Chemical Compounds
+  - Drug Discovery
+  - Bioassay
+  - Life Sciences
+  - NCBI
+  - Bioinformatics
+url: https://pubchem.ncbi.nlm.nih.gov/
+created: "2026-06-13"
+modified: "2026-06-13"
+specificationVersion: "0.19"
+apis:
+
+  - name: PubChem PUG REST API
+    description: The Power User Gateway (PUG) REST API provides programmatic access to PubChem compound, substance, and bioassay data. Supports lookup by name, CID, SID, InChI, SMILES, and structure search. Returns molecular properties, identifiers, 2D/3D structures, bioactivity summaries, cross-references, synonyms, and images.
+    humanURL: https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest
+    baseURL: https://pubchem.ncbi.nlm.nih.gov/rest/pug
+    tags:
+      - Compounds
+      - Substances
+      - Bioassays
+      - Structure Search
+      - Chemical Properties
+    properties:
+      - type: Documentation
+        url: https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest
+      - type: OpenAPI
+        url: https://pubchem.ncbi.nlm.nih.gov/rest/pug/openapi.json
+    contact:
+      - FN: PubChem Help Desk
+        email: pubchem-help@ncbi.nlm.nih.gov
+    operations:
+      - summary: Get compound by CID
+        method: GET
+        path: /compound/cid/{cid}/JSON
+        description: Retrieve full compound record by PubChem Compound ID (CID) in JSON format.
+      - summary: Get compound by name
+        method: GET
+        path: /compound/name/{name}/JSON
+        description: Retrieve compound records by chemical name, returning CID and full compound data.
+      - summary: Get compound by SMILES
+        method: GET
+        path: /compound/smiles/{smiles}/JSON
+        description: Retrieve compound records by canonical SMILES string.
+      - summary: Get compound by InChI
+        method: GET
+        path: /compound/inchi/{inchi}/JSON
+        description: Retrieve compound records by IUPAC International Chemical Identifier.
+      - summary: Get compound properties
+        method: GET
+        path: /compound/cid/{cid}/property/{properties}/JSON
+        description: Retrieve selected calculated properties (MolecularFormula, MolecularWeight, CanonicalSMILES, InChI, InChIKey, IUPACName, XLogP, TPSA, etc.) for a compound.
+      - summary: Get compound synonyms
+        method: GET
+        path: /compound/cid/{cid}/synonyms/JSON
+        description: Retrieve all synonyms and alternative names for a compound.
+      - summary: Get compound SIDs
+        method: GET
+        path: /compound/cid/{cid}/sids/JSON
+        description: Retrieve all substance IDs (SIDs) associated with a compound.
+      - summary: Get compound cross-references
+        method: GET
+        path: /compound/cid/{cid}/xrefs/{xreftypes}/JSON
+        description: Retrieve external cross-references (RegistryID, RN, PubMedID, MMDBID, ProteinGI, NucleotideGI, TaxonomyID, MIMID, GeneID, ProbeID, PatentID) for a compound.
+      - summary: Get compound image
+        method: GET
+        path: /compound/cid/{cid}/PNG
+        description: Retrieve a 2D structure image of a compound in PNG format.
+      - summary: Get compound bioassay summary
+        method: GET
+        path: /compound/cid/{cid}/assaysummary/JSON
+        description: Retrieve a summary of bioassay results for a compound, including activity outcomes and assay metadata.
+      - summary: Substructure search
+        method: GET
+        path: /compound/substructure/smiles/{smiles}/JSON
+        description: Search for compounds containing a specified substructure using SMILES, InChI, or SDF input. Returns async listkey for large result sets.
+      - summary: Superstructure search
+        method: GET
+        path: /compound/superstructure/smiles/{smiles}/JSON
+        description: Search for compounds that are superstructures of the specified structure.
+      - summary: Similarity search
+        method: GET
+        path: /compound/fastsimilarity_2d/smiles/{smiles}/JSON
+        description: Fast 2D Tanimoto similarity search for structurally similar compounds.
+      - summary: Get substance by SID
+        method: GET
+        path: /substance/sid/{sid}/JSON
+        description: Retrieve a substance record by PubChem Substance ID (SID), including source information, synonyms, and associated compound.
+      - summary: Get substance synonyms
+        method: GET
+        path: /substance/sid/{sid}/synonyms/JSON
+        description: Retrieve all synonyms for a substance record.
+      - summary: Get assay by AID
+        method: GET
+        path: /assay/aid/{aid}/JSON
+        description: Retrieve a full bioassay record by Assay ID (AID), including protocol, results schema, and experimental data.
+      - summary: Get assay description
+        method: GET
+        path: /assay/aid/{aid}/description/JSON
+        description: Retrieve descriptive metadata for a bioassay, including title, protocol, target information, and measurement parameters.
+      - summary: Get assay results
+        method: GET
+        path: /assay/aid/{aid}/CSV
+        description: Retrieve bioassay experimental results in CSV format with all tested substance outcomes and activity values.
+      - summary: Retrieve async results by listkey
+        method: GET
+        path: /compound/listkey/{listkey}/cids/JSON
+        description: Poll for and retrieve results from an asynchronous structure search query using the listkey returned during the search initiation.
+
+  - name: PubChem PUG View API
+    description: The PUG View API provides access to the full structured compound and substance pages as seen on the PubChem website, organized as hierarchical sections covering names, structures, physical and chemical properties, safety data, pharmacology, biological activities, toxicology, literature references, and more.
+    humanURL: https://pubchem.ncbi.nlm.nih.gov/docs/pug-view
+    baseURL: https://pubchem.ncbi.nlm.nih.gov/rest/pug_view
+    tags:
+      - Compound Data
+      - Safety Data
+      - Pharmacology
+      - Toxicology
+      - Structured Data
+    properties:
+      - type: Documentation
+        url: https://pubchem.ncbi.nlm.nih.gov/docs/pug-view
+    contact:
+      - FN: PubChem Help Desk
+        email: pubchem-help@ncbi.nlm.nih.gov
+    operations:
+      - summary: Get full compound data page
+        method: GET
+        path: /data/compound/{cid}/JSON
+        description: Retrieve all structured data for a compound as seen on its PubChem compound page, organized in hierarchical sections.
+      - summary: Get compound data section
+        method: GET
+        path: /data/compound/{cid}/JSON
+        description: Retrieve a specific section of a compound data page using the heading parameter (e.g., Safety+and+Hazards, Pharmacology+and+Biochemistry, Chemical+and+Physical+Properties).
+      - summary: Get full substance data page
+        method: GET
+        path: /data/substance/{sid}/JSON
+        description: Retrieve all structured data for a substance record in hierarchical section format.
+      - summary: Get annotations by heading
+        method: GET
+        path: /annotations/heading/{heading}/JSON
+        description: Retrieve annotations across all compounds for a specific data heading (e.g., Boiling+Point, LogP, Melting+Point).
+      - summary: Get data in XML format
+        method: GET
+        path: /data/compound/{cid}/XML
+        description: Retrieve full compound structured data in XML format.
+      - summary: Get data in ASNT format
+        method: GET
+        path: /data/compound/{cid}/ASNT
+        description: Retrieve full compound structured data in ASN.1 text format for programmatic parsing.
+
+  - name: PubChem PUG SOAP API
+    description: Legacy SOAP/XML web service interface for PubChem providing structure search, identity search, and chemical standardization capabilities. Supports submitting queries and retrieving results in ASN.1, XML, and SDF formats.
+    humanURL: https://pubchem.ncbi.nlm.nih.gov/pug/pugsoap.cgi?wsdl
+    baseURL: https://pubchem.ncbi.nlm.nih.gov/pug/pugsoap.cgi
+    tags:
+      - SOAP
+      - Legacy
+      - Structure Search
+      - Chemical Standardization
+    properties:
+      - type: Documentation
+        url: https://pubchem.ncbi.nlm.nih.gov/docs/pug-soap
+      - type: WSDL
+        url: https://pubchem.ncbi.nlm.nih.gov/pug/pugsoap.cgi?wsdl
+    contact:
+      - FN: PubChem Help Desk
+        email: pubchem-help@ncbi.nlm.nih.gov
+
+  - name: PubChem Structure Image Service
+    description: Generates 2D and 3D structure images for chemical compounds by CID, SID, SMILES, or InChI. Returns PNG images at configurable sizes, suitable for embedding in applications and documents.
+    humanURL: https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest#section=PNG
+    baseURL: https://pubchem.ncbi.nlm.nih.gov/rest/pug
+    tags:
+      - Structure Images
+      - 2D Structures
+      - Visualization
+    properties:
+      - type: Documentation
+        url: https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest#section=PNG
+    contact:
+      - FN: PubChem Help Desk
+        email: pubchem-help@ncbi.nlm.nih.gov
+    operations:
+      - summary: Get compound 2D structure image by CID
+        method: GET
+        path: /compound/cid/{cid}/PNG
+        description: Returns a PNG image of the 2D chemical structure for the given compound ID. Size can be controlled with the image_size parameter.
+      - summary: Get compound image by name
+        method: GET
+        path: /compound/name/{name}/PNG
+        description: Returns a PNG image of the 2D chemical structure for a compound looked up by name.
+      - summary: Get compound image by SMILES
+        method: GET
+        path: /compound/smiles/{smiles}/PNG
+        description: Returns a PNG image of the 2D chemical structure for the compound specified by SMILES string.
+
+  - name: PubChem Identifier Exchange Service
+    description: Bulk identifier conversion service for translating between PubChem CIDs, SIDs, and external identifiers such as CAS Registry Numbers, ChEMBL IDs, ChEBI IDs, and other registry identifiers at scale.
+    humanURL: https://pubchem.ncbi.nlm.nih.gov/idexchange/idexchange.cgi
+    baseURL: https://pubchem.ncbi.nlm.nih.gov/idexchange
+    tags:
+      - Identifier Conversion
+      - CAS Numbers
+      - ChEMBL
+      - ChEBI
+      - Registry IDs
+    properties:
+      - type: Documentation
+        url: https://pubchem.ncbi.nlm.nih.gov/docs/identifier-exchange-service
+    contact:
+      - FN: PubChem Help Desk
+        email: pubchem-help@ncbi.nlm.nih.gov
+
+common:
+  - type: Terms of Service
+    url: https://www.nlm.nih.gov/web_policies.html
+  - type: Privacy Policy
+    url: https://www.nlm.nih.gov/privacy.html
+  - type: Status
+    url: https://pubchem.ncbi.nlm.nih.gov/
+  - type: Support
+    url: https://support.nlm.nih.gov/
+  - type: Sign Up
+    url: https://www.ncbi.nlm.nih.gov/account/
+  - type: GitHub
+    url: https://github.com/ncbi
+  - type: Blog
+    url: https://pubchemblog.wordpress.com/
+  - type: Documentation
+    url: https://pubchem.ncbi.nlm.nih.gov/docs/
+  - type: FAQ
+    url: https://pubchem.ncbi.nlm.nih.gov/docs/faq
+  - type: Rate Limits
+    url: https://pubchem.ncbi.nlm.nih.gov/docs/programmatic-access#section=Request-Volume-Limitations
+  - type: Plans
+    url: plans/plans.yml
+  - type: Rate Limits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

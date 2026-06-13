@@ -1,0 +1,52 @@
+name: PubChem API FinOps
+description: PubChem is a free public resource funded by the U.S. National Institutes of Health (NIH) through the National Library of Medicine (NLM) and the National Center for Biotechnology Information (NCBI). There are no costs, subscription fees, or usage-based charges for any PubChem API or data service. All data and APIs are freely available to all users worldwide.
+
+url: https://pubchem.ncbi.nlm.nih.gov/
+funding_source: U.S. National Institutes of Health (NIH) / National Library of Medicine (NLM)
+
+cost_model:
+  type: free
+  price: 0
+  currency: USD
+  description: All PubChem APIs and data are free to use with no charges for any access tier, volume of requests, or data downloaded.
+
+cost_optimization:
+
+  - name: Use Bulk FTP Downloads for Large Datasets
+    description: For large-scale data needs involving millions of compound records, use the PubChem FTP site instead of the REST API. FTP downloads are pre-generated data dumps that eliminate API overhead and avoid any rate limit concerns.
+    savings: Avoids engineering effort managing pagination and retry logic; more efficient for datasets over 10,000 records.
+    url: https://ftp.ncbi.nlm.nih.gov/pubchem/
+
+  - name: Use the api_key Parameter
+    description: Register a free NCBI API key to double the request rate limit from 5 to 10 requests per second. This allows faster data retrieval without additional cost and reduces total wall-clock time for batch jobs.
+    savings: 2x throughput for bulk retrieval jobs with no additional cost.
+    url: https://www.ncbi.nlm.nih.gov/account/
+
+  - name: Schedule Batch Jobs During Off-Peak Hours
+    description: Run large batch jobs during weekends or between 9 PM and 5 AM Eastern Time on weekdays. This reduces the likelihood of rate limit enforcement and is a stated best practice by NCBI.
+    savings: Reduces risk of IP blocking and service interruption for production workflows.
+    url: https://www.ncbi.nlm.nih.gov/books/NBK25497/
+
+  - name: Request Only Needed Properties
+    description: When using the PUG REST property endpoint, specify only the molecular properties you need (e.g., MolecularFormula,MolecularWeight) rather than fetching full compound records. This reduces response payload size and improves throughput.
+    savings: Smaller payloads reduce bandwidth usage and parsing time.
+    url: https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest#section=Compound-Property-Tables
+
+  - name: Cache Compound Data Locally
+    description: PubChem compound records for stable chemical entities change infrequently. Caching CID-based lookups locally eliminates redundant API calls for frequently accessed compounds.
+    savings: Reduces API call volume and application latency for repeated lookups.
+
+  - name: Use Async Search with Listkeys
+    description: Structure searches (substructure, similarity) return a listkey for large result sets. Poll for results asynchronously rather than blocking, allowing concurrent processing of multiple searches.
+    savings: Improves throughput for workloads with many parallel structure searches.
+    url: https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest#section=Asynchronous-Operations
+
+budget_considerations:
+  - Infrastructure costs for running your own application that calls PubChem APIs are your only direct costs.
+  - No metered API costs, overage charges, or data egress fees apply.
+  - PubChem data and APIs may be used for both academic and commercial purposes without licensing fees.
+  - Attribution to PubChem/NCBI is appreciated but not required for API usage.
+
+data_policy:
+  description: PubChem data is in the public domain and freely available for any purpose including commercial use. No data licensing fees apply.
+  url: https://www.nlm.nih.gov/web_policies.html
