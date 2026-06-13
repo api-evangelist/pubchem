@@ -1,0 +1,38 @@
+{
+  "title": "Get Compound Synonyms",
+  "description": "Retrieve all synonyms and alternative names for aspirin (CID 2244).",
+  "request": {
+    "method": "GET",
+    "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/2244/synonyms/JSON",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "InformationList": {
+        "Information": [
+          {
+            "CID": 2244,
+            "Synonym": [
+              "aspirin",
+              "acetylsalicylic acid",
+              "2-acetoxybenzoic acid",
+              "50-78-2",
+              "ASA",
+              "Acetylsalicylate",
+              "Acenterine",
+              "Aceticyl",
+              "Acetosal",
+              "Acetysal"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

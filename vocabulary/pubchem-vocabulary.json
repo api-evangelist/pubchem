@@ -1,0 +1,110 @@
+{
+  "title": "PubChem Vocabulary",
+  "description": "Key terms, identifiers, and concepts used in the PubChem API.",
+  "version": "1.0.0",
+  "source": "https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest",
+  "terms": [
+    {
+      "term": "CID",
+      "label": "Compound ID",
+      "definition": "PubChem Compound Identifier — a unique integer assigned to each distinct chemical structure in PubChem. CIDs are canonical and stable.",
+      "example": "2244"
+    },
+    {
+      "term": "SID",
+      "label": "Substance ID",
+      "definition": "PubChem Substance Identifier — a unique integer assigned to each substance record submitted to PubChem by a depositor. Multiple SIDs may map to a single CID.",
+      "example": "87574576"
+    },
+    {
+      "term": "AID",
+      "label": "Assay ID",
+      "definition": "PubChem BioAssay Identifier — a unique integer identifying a bioassay experiment record in PubChem BioAssay.",
+      "example": "1452"
+    },
+    {
+      "term": "SMILES",
+      "label": "Simplified Molecular-Input Line-Entry System",
+      "definition": "A notation that allows a user to represent a chemical structure in a way that can be used by the computer. PubChem supports both canonical and isomeric SMILES.",
+      "example": "CC(=O)OC1=CC=CC=C1C(=O)O"
+    },
+    {
+      "term": "InChI",
+      "label": "International Chemical Identifier",
+      "definition": "A textual identifier for chemical substances, designed to provide a standard way to encode molecular information. Developed by IUPAC.",
+      "example": "InChI=1S/C9H8O4/c1-6(10)13-8-5-3-2-4-7(8)9(11)12/h2-5H,1H3,(H,11,12)"
+    },
+    {
+      "term": "InChIKey",
+      "label": "InChI Key",
+      "definition": "A fixed-length (27-character) condensed digital representation of the InChI. Designed for web searching and indexing.",
+      "example": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N"
+    },
+    {
+      "term": "MolecularFormula",
+      "label": "Molecular Formula",
+      "definition": "Chemical formula expressing the types and numbers of atoms in a molecule using element symbols and counts.",
+      "example": "C9H8O4"
+    },
+    {
+      "term": "MolecularWeight",
+      "label": "Molecular Weight",
+      "definition": "The average mass of a molecule calculated using the atomic weights of each constituent element, expressed in g/mol.",
+      "example": "180.16"
+    },
+    {
+      "term": "IUPACName",
+      "label": "IUPAC Name",
+      "definition": "Systematic chemical name following the nomenclature recommendations of the International Union of Pure and Applied Chemistry.",
+      "example": "2-acetyloxybenzoic acid"
+    },
+    {
+      "term": "XLogP",
+      "label": "XLogP3",
+      "definition": "Computed partition coefficient (log P) between octanol and water, calculated using the XLogP3 method. Indicates lipophilicity.",
+      "example": "1.2"
+    },
+    {
+      "term": "TPSA",
+      "label": "Topological Polar Surface Area",
+      "definition": "The surface sum over all polar atoms (oxygen, nitrogen, and their attached hydrogens) in a molecule, expressed in square angstroms. Related to oral bioavailability.",
+      "example": "63.6"
+    },
+    {
+      "term": "HBondDonorCount",
+      "label": "Hydrogen Bond Donor Count",
+      "definition": "Number of nitrogen-hydrogen (NH) and oxygen-hydrogen (OH) bonds in a compound. Relevant to drug-likeness (Lipinski Rule of Five).",
+      "example": "1"
+    },
+    {
+      "term": "HBondAcceptorCount",
+      "label": "Hydrogen Bond Acceptor Count",
+      "definition": "Number of nitrogen (N) and oxygen (O) atoms in a compound. Relevant to drug-likeness (Lipinski Rule of Five).",
+      "example": "4"
+    },
+    {
+      "term": "ListKey",
+      "label": "List Key",
+      "definition": "A temporary server-side key returned by asynchronous search operations (substructure, superstructure, similarity). Used to poll for and retrieve results.",
+      "example": "1234567"
+    },
+    {
+      "term": "PUG",
+      "label": "Power User Gateway",
+      "definition": "PubChem's primary programmatic interface supporting batch downloads, structure searches, and data retrieval. Available as both REST (PUG REST) and SOAP (PUG SOAP) interfaces.",
+      "example": null
+    },
+    {
+      "term": "SDF",
+      "label": "Structure Data File",
+      "definition": "A chemical file format that allows multiple chemical structures and associated data to be archived in a single file. One of the output formats supported by PubChem APIs.",
+      "example": null
+    },
+    {
+      "term": "Tanimoto",
+      "label": "Tanimoto Coefficient",
+      "definition": "A similarity metric used in chemical structure comparison based on the ratio of shared features to total features. Used in the PubChem 2D similarity search, with scores from 0 (no similarity) to 100 (identical).",
+      "example": "90"
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pubchem.ncbi.nlm.nih.gov/schemas/compound-properties",
+  "title": "PubChem Compound Properties",
+  "description": "Schema for the compound properties response from the PubChem PUG REST API property table endpoint.",
+  "type": "object",
+  "properties": {
+    "PropertyTable": {
+      "type": "object",
+      "description": "Container for the property table response.",
+      "properties": {
+        "Properties": {
+          "type": "array",
+          "description": "Array of compound property records.",
+          "items": {
+            "$ref": "#/$defs/CompoundProperty"
+          }
+        }
+      },
+      "required": ["Properties"]
+    }
+  },
+  "required": ["PropertyTable"],
+  "$defs": {
+    "CompoundProperty": {
+      "type": "object",
+      "description": "Properties for a single PubChem compound.",
+      "properties": {
+        "CID": {
+          "type": "integer",
+          "description": "PubChem Compound Identifier.",
+          "example": 2244
+        },
+        "MolecularFormula": {
+          "type": "string",
+          "description": "Molecular formula of the compound.",
+          "example": "C9H8O4"
+        },
+        "MolecularWeight": {
+          "type": "string",
+          "description": "Molecular weight in g/mol.",
+          "example": "180.16"
+        },
+        "CanonicalSMILES": {
+          "type": "string",
+          "description": "Canonical SMILES string.",
+          "example": "CC(=O)OC1=CC=CC=C1C(=O)O"
+        },
+        "IsomericSMILES": {
+          "type": "string",
+          "description": "Isomeric SMILES string including stereochemistry.",
+          "example": "CC(=O)OC1=CC=CC=C1C(=O)O"
+        },
+        "InChI": {
+          "type": "string",
+          "description": "IUPAC International Chemical Identifier.",
+          "example": "InChI=1S/C9H8O4/c1-6(10)13-8-5-3-2-4-7(8)9(11)12/h2-5H,1H3,(H,11,12)"
+        },
+        "InChIKey": {
+          "type": "string",
+          "description": "Hashed InChI key for indexing.",
+          "example": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N"
+        },
+        "IUPACName": {
+          "type": "string",
+          "description": "IUPAC systematic name.",
+          "example": "2-acetyloxybenzoic acid"
+        },
+        "XLogP": {
+          "type": "number",
+          "description": "Computed octanol/water partition coefficient (XLogP3).",
+          "example": 1.2
+        },
+        "ExactMass": {
+          "type": "string",
+          "description": "Exact monoisotopic mass.",
+          "example": "180.042259"
+        },
+        "MonoisotopicMass": {
+          "type": "string",
+          "description": "Monoisotopic mass.",
+          "example": "180.042259"
+        },
+        "TPSA": {
+          "type": "number",
+          "description": "Topological polar surface area in square angstroms.",
+          "example": 63.6
+        },
+        "Complexity": {
+          "type": "integer",
+          "description": "Structural complexity rating.",
+          "example": 212
+        },
+        "Charge": {
+          "type": "integer",
+          "description": "Formal charge of the compound.",
+          "example": 0
+        },
+        "HBondDonorCount": {
+          "type": "integer",
+          "description": "Number of hydrogen bond donors.",
+          "example": 1
+        },
+        "HBondAcceptorCount": {
+          "type": "integer",
+          "description": "Number of hydrogen bond acceptors.",
+          "example": 4
+        },
+        "RotatableBondCount": {
+          "type": "integer",
+          "description": "Number of rotatable bonds.",
+          "example": 3
+        },
+        "HeavyAtomCount": {
+          "type": "integer",
+          "description": "Number of non-hydrogen atoms.",
+          "example": 13
+        }
+      },
+      "required": ["CID"]
+    }
+  }
+}

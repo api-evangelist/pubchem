@@ -1,0 +1,23 @@
+{
+  "title": "Substructure Search by SMILES",
+  "description": "Search for compounds containing a benzene ring substructure using the fast substructure search endpoint.",
+  "request": {
+    "method": "GET",
+    "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/fastsubstructure/smiles/c1ccccc1/cids/JSON?MaxRecords=10",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "IdentifierList": {
+        "CID": [241, 996, 1049, 1108, 1116, 1201, 1203, 1289, 1303, 1313],
+        "Size": 10
+      }
+    }
+  }
+}

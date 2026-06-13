@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "pubchem": "https://pubchem.ncbi.nlm.nih.gov/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "cid": "pubchem:cid/",
+    "sid": "pubchem:sid/",
+    "aid": "pubchem:aid/",
+    "MolecularFormula": "pubchem:MolecularFormula",
+    "MolecularWeight": "pubchem:MolecularWeight",
+    "CanonicalSMILES": "pubchem:CanonicalSMILES",
+    "IsomericSMILES": "pubchem:IsomericSMILES",
+    "InChI": "pubchem:InChI",
+    "InChIKey": "pubchem:InChIKey",
+    "IUPACName": "pubchem:IUPACName",
+    "XLogP": "pubchem:XLogP",
+    "ExactMass": "pubchem:ExactMass",
+    "MonoisotopicMass": "pubchem:MonoisotopicMass",
+    "TPSA": "pubchem:TPSA",
+    "Complexity": "pubchem:Complexity",
+    "Charge": "pubchem:Charge",
+    "HBondDonorCount": "pubchem:HBondDonorCount",
+    "HBondAcceptorCount": "pubchem:HBondAcceptorCount",
+    "RotatableBondCount": "pubchem:RotatableBondCount",
+    "HeavyAtomCount": "pubchem:HeavyAtomCount",
+    "Synonym": "pubchem:Synonym"
+  },
+  "@graph": [
+    {
+      "@id": "pubchem:",
+      "@type": "Dataset",
+      "name": "PubChem",
+      "description": "PubChem is NCBI's open chemistry database containing information on more than 100 million chemical compounds.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/",
+      "provider": {
+        "@type": "Organization",
+        "name": "National Center for Biotechnology Information (NCBI)",
+        "url": "https://www.ncbi.nlm.nih.gov/"
+      },
+      "license": {
+        "@type": "CreativeWork",
+        "name": "Public Domain",
+        "url": "https://www.ncbi.nlm.nih.gov/home/about/policies/"
+      }
+    },
+    {
+      "@id": "pubchem:rest/pug",
+      "@type": "WebAPI",
+      "name": "PubChem PUG REST API",
+      "description": "Power User Gateway REST API providing programmatic access to PubChem compound, substance, and bioassay data.",
+      "documentation": "https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug",
+      "termsOfService": "https://www.nlm.nih.gov/web_policies.html"
+    },
+    {
+      "@id": "pubchem:rest/pug_view",
+      "@type": "WebAPI",
+      "name": "PubChem PUG View API",
+      "description": "PUG View API providing access to the full structured compound and substance pages.",
+      "documentation": "https://pubchem.ncbi.nlm.nih.gov/docs/pug-view",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view",
+      "termsOfService": "https://www.nlm.nih.gov/web_policies.html"
+    }
+  ]
+}
