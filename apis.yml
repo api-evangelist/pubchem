@@ -217,15 +217,15 @@ apis:
         email: pubchem-help@ncbi.nlm.nih.gov
 
 common:
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.nlm.nih.gov/web_policies.html
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.nlm.nih.gov/privacy.html
   - type: Status
     url: https://pubchem.ncbi.nlm.nih.gov/
   - type: Support
     url: https://support.nlm.nih.gov/
-  - type: Sign Up
+  - type: Signup
     url: https://www.ncbi.nlm.nih.gov/account/
   - type: GitHub
     url: https://github.com/ncbi
@@ -235,11 +235,11 @@ common:
     url: https://pubchem.ncbi.nlm.nih.gov/docs/
   - type: FAQ
     url: https://pubchem.ncbi.nlm.nih.gov/docs/faq
-  - type: Rate Limits
+  - type: RateLimits
     url: https://pubchem.ncbi.nlm.nih.gov/docs/programmatic-access#section=Request-Volume-Limitations
   - type: Plans
     url: plans/plans.yml
-  - type: Rate Limits
+  - type: RateLimits
     url: rate-limits/rate-limits.yml
   - type: FinOps
     url: finops/finops.yml
