@@ -2,11 +2,13 @@
   "repo": "pubchem",
   "feeds": [
     {
-      "source": "https://pubchemblog.wordpress.com/",
+      "source": "https://github.com/ncbi",
+      "feed_url": "https://github.com/ncbi",
+      "title": "",
       "saved": 0,
-      "error": "HTTP 410 Gone"
+      "method": "none"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-27T13:07:23Z"
+  "fetched": "2026-07-11T11:50:51Z"
 }
