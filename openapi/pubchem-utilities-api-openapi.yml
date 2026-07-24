@@ -1,0 +1,114 @@
+openapi: 3.0.3
+info:
+  title: PubChem PUG REST Compounds Utilities API
+  description: 'PUG REST is a REST-style version of PUG (Power User Gateway), a web interface for accessing PubChem data and services. PUG REST provides access to the data in PubChem Compounds as well as specialized chemical structure search services.
+
+
+    The service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.
+
+    '
+  version: 1.0.0
+  contact:
+    email: pubchem-help@ncbi.nlm.nih.gov
+  license:
+    name: Public Domain
+    url: https://www.ncbi.nlm.nih.gov/home/about/policies/
+servers:
+- url: https://pubchem.ncbi.nlm.nih.gov/rest/pug
+  description: PubChem PUG REST API
+tags:
+- name: Utilities
+  description: Utility operations
+paths:
+  /standardize/smiles/{smiles}/{format}:
+    get:
+      tags:
+      - Utilities
+      summary: Standardize SMILES
+      description: Returns the standardized form of the input SMILES string
+      parameters:
+      - name: smiles
+        in: path
+        required: true
+        schema:
+          type: string
+        description: SMILES string to standardize
+        example: CCCC
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - SDF
+          - XML
+          - JSON
+          - JSONP
+          - ASNT
+          - ASNB
+          default: JSON
+        description: Output format
+      - name: include_components
+        in: query
+        schema:
+          type: boolean
+          default: true
+        description: Include components and neutralized forms
+      - name: callback
+        in: query
+        schema:
+          type: string
+        description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            chemical/x-mdl-sdfile:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+components:
+  responses:
+    BadRequest:
+      description: Request is improperly formed (syntax error in the URL, POST body, etc.)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    ServiceUnavailable:
+      description: Too many requests or server is busy, retry later
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        text/html:
+          schema:
+            type: string
+  schemas:
+    Fault:
+      type: object
+      description: Error response
+      properties:
+        Fault:
+          type: object
+          properties:
+            Code:
+              type: string
+            Message:
+              type: string
+            Details:
+              type: array
+              items:
+                type: string

@@ -1,0 +1,547 @@
+openapi: 3.0.3
+info:
+  title: PubChem PUG REST Compounds API
+  description: 'PUG REST is a REST-style version of PUG (Power User Gateway), a web interface for accessing PubChem data and services. PUG REST provides access to the data in PubChem Compounds as well as specialized chemical structure search services.
+
+
+    The service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.
+
+    '
+  version: 1.0.0
+  contact:
+    email: pubchem-help@ncbi.nlm.nih.gov
+  license:
+    name: Public Domain
+    url: https://www.ncbi.nlm.nih.gov/home/about/policies/
+servers:
+- url: https://pubchem.ncbi.nlm.nih.gov/rest/pug
+  description: PubChem PUG REST API
+tags:
+- name: Compounds
+  description: Operations on compound records
+paths:
+  /compound/cid/{cids}/{format}:
+    get:
+      tags:
+      - Compounds
+      summary: Get compound records by CID
+      description: Retrieve full compound records for the specified CIDs
+      parameters:
+      - name: cids
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Comma-separated list of Compound IDs (CIDs)
+        example: 2244,5793
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - XML
+          - JSON
+          - JSONP
+          - ASNT
+          - ASNB
+          - SDF
+          - PNG
+          - TXT
+          default: JSON
+        description: Output format
+      - name: record_type
+        in: query
+        schema:
+          type: string
+          enum:
+          - 2d
+          - 3d
+          default: 2d
+        description: Type of conformer for compounds
+      - name: image_size
+        in: query
+        schema:
+          type: string
+          default: large
+        description: Image size - large (300x300), small (100x100), or custom (e.g. 320x240)
+      - name: callback
+        in: query
+        schema:
+          type: string
+        description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompoundRecords'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CompoundRecords'
+            chemical/x-mdl-sdfile:
+              schema:
+                type: string
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /compound/name/{name}/{format}:
+    get:
+      tags:
+      - Compounds
+      summary: Get compound records by name
+      description: Retrieve compound records for the specified chemical name
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Chemical name
+        example: aspirin
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - XML
+          - JSON
+          - JSONP
+          - ASNT
+          - ASNB
+          - SDF
+          - PNG
+          - TXT
+          default: JSON
+        description: Output format
+      - name: name_type
+        in: query
+        schema:
+          type: string
+          enum:
+          - word
+          - complete
+        description: Name matching type
+      - name: record_type
+        in: query
+        schema:
+          type: string
+          enum:
+          - 2d
+          - 3d
+          default: 2d
+        description: Type of conformer for compounds
+      - name: image_size
+        in: query
+        schema:
+          type: string
+          default: large
+        description: Image size for PNG format
+      - name: callback
+        in: query
+        schema:
+          type: string
+        description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompoundRecords'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /compound/smiles/{smiles}/{format}:
+    get:
+      tags:
+      - Compounds
+      summary: Get compound records by SMILES
+      description: Retrieve compound records for the specified SMILES string
+      parameters:
+      - name: smiles
+        in: path
+        required: true
+        schema:
+          type: string
+        description: SMILES string (URL-encoded)
+        example: CCCC
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - XML
+          - JSON
+          - JSONP
+          - ASNT
+          - ASNB
+          - SDF
+          - PNG
+          - TXT
+          default: JSON
+        description: Output format
+      - name: record_type
+        in: query
+        schema:
+          type: string
+          enum:
+          - 2d
+          - 3d
+          default: 2d
+        description: Type of conformer for compounds
+      - name: image_size
+        in: query
+        schema:
+          type: string
+          default: large
+        description: Image size for PNG format
+      - name: callback
+        in: query
+        schema:
+          type: string
+        description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompoundRecords'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /compound/inchikey/{inchikey}/{format}:
+    get:
+      tags:
+      - Compounds
+      summary: Get compound records by InChI Key
+      description: Retrieve compound records for the specified InChI Key
+      parameters:
+      - name: inchikey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: InChI Key
+        example: BPGDAMSIGCZZLK-UHFFFAOYSA-N
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - XML
+          - JSON
+          - JSONP
+          - ASNT
+          - ASNB
+          - SDF
+          - PNG
+          - TXT
+          default: JSON
+        description: Output format
+      - name: record_type
+        in: query
+        schema:
+          type: string
+          enum:
+          - 2d
+          - 3d
+          default: 2d
+        description: Type of conformer for compounds
+      - name: image_size
+        in: query
+        schema:
+          type: string
+          default: large
+        description: Image size for PNG format
+      - name: callback
+        in: query
+        schema:
+          type: string
+        description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompoundRecords'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /compound/cid/{cids}/property/{properties}/{format}:
+    get:
+      tags:
+      - Compounds
+      summary: Get compound properties
+      description: Retrieve specific properties for the specified compounds
+      parameters:
+      - name: cids
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Comma-separated list of Compound IDs (CIDs)
+        example: 1,2,3,4,5
+      - name: properties
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Comma-separated list of property names
+        example: MolecularFormula,MolecularWeight,InChIKey
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - XML
+          - JSON
+          - JSONP
+          - ASNT
+          - ASNB
+          - CSV
+          - TXT
+          default: JSON
+        description: Output format
+      - name: callback
+        in: query
+        schema:
+          type: string
+        description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyTable'
+            text/csv:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /compound/cid/{cids}/synonyms/{format}:
+    get:
+      tags:
+      - Compounds
+      summary: Get compound synonyms
+      description: Retrieve synonyms for the specified compounds
+      parameters:
+      - name: cids
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Comma-separated list of Compound IDs (CIDs)
+        example: '2244'
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - XML
+          - JSON
+          - JSONP
+          - ASNT
+          - ASNB
+          - TXT
+          default: JSON
+        description: Output format
+      - name: callback
+        in: query
+        schema:
+          type: string
+        description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InformationList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+components:
+  schemas:
+    InformationList:
+      type: object
+      description: List of information records
+      properties:
+        InformationList:
+          type: object
+          properties:
+            Information:
+              type: array
+              items:
+                type: object
+                properties:
+                  CID:
+                    type: integer
+                  SID:
+                    type: integer
+                  AID:
+                    type: integer
+                  Synonym:
+                    type: array
+                    items:
+                      type: string
+                  Title:
+                    type: string
+                  Description:
+                    type: string
+    PropertyTable:
+      type: object
+      description: Table of compound properties
+      properties:
+        PropertyTable:
+          type: object
+          properties:
+            Properties:
+              type: array
+              items:
+                type: object
+                properties:
+                  CID:
+                    type: integer
+                  MolecularFormula:
+                    type: string
+                  MolecularWeight:
+                    type: string
+                  SMILES:
+                    type: string
+                  InChI:
+                    type: string
+                  InChIKey:
+                    type: string
+                  IUPACName:
+                    type: string
+                  XLogP:
+                    type: number
+                  ExactMass:
+                    type: string
+                  MonoisotopicMass:
+                    type: string
+                  TPSA:
+                    type: number
+                  Complexity:
+                    type: integer
+                  Charge:
+                    type: integer
+                  HBondDonorCount:
+                    type: integer
+                  HBondAcceptorCount:
+                    type: integer
+                  RotatableBondCount:
+                    type: integer
+                  HeavyAtomCount:
+                    type: integer
+    CompoundRecord:
+      type: object
+      description: A single compound record
+      properties:
+        id:
+          type: object
+          properties:
+            id:
+              type: object
+              properties:
+                cid:
+                  type: integer
+        atoms:
+          type: object
+        bonds:
+          type: object
+        stereo:
+          type: array
+          items:
+            type: object
+        props:
+          type: array
+          items:
+            type: object
+    Fault:
+      type: object
+      description: Error response
+      properties:
+        Fault:
+          type: object
+          properties:
+            Code:
+              type: string
+            Message:
+              type: string
+            Details:
+              type: array
+              items:
+                type: string
+    CompoundRecords:
+      type: object
+      description: Collection of compound records
+      properties:
+        PC_Compounds:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompoundRecord'
+  responses:
+    NotFound:
+      description: The input record was not found (e.g. invalid CID)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    ServiceUnavailable:
+      description: Too many requests or server is busy, retry later
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        text/html:
+          schema:
+            type: string
+    BadRequest:
+      description: Request is improperly formed (syntax error in the URL, POST body, etc.)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'

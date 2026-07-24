@@ -1,0 +1,501 @@
+openapi: 3.0.3
+info:
+  title: PubChem PUG REST Compounds Structure Search API
+  description: 'PUG REST is a REST-style version of PUG (Power User Gateway), a web interface for accessing PubChem data and services. PUG REST provides access to the data in PubChem Compounds as well as specialized chemical structure search services.
+
+
+    The service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.
+
+    '
+  version: 1.0.0
+  contact:
+    email: pubchem-help@ncbi.nlm.nih.gov
+  license:
+    name: Public Domain
+    url: https://www.ncbi.nlm.nih.gov/home/about/policies/
+servers:
+- url: https://pubchem.ncbi.nlm.nih.gov/rest/pug
+  description: PubChem PUG REST API
+tags:
+- name: Structure Search
+  description: Chemical structure search operations
+paths:
+  /compound/fastsubstructure/smiles/{smiles}/cids/{format}:
+    get:
+      tags:
+      - Structure Search
+      summary: Substructure search by SMILES
+      description: Perform substructure search using SMILES string
+      parameters:
+      - name: smiles
+        in: path
+        required: true
+        schema:
+          type: string
+        description: SMILES string (URL-encoded)
+        example: C3=NC1=C(C=NC2=C1C=NC=C2)[N]3
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - XML
+          - JSON
+          - JSONP
+          - ASNT
+          - ASNB
+          default: JSON
+        description: Output format
+      - name: MatchIsotopes
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: Atoms must be of the specified isotope
+      - name: MatchCharges
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: Atoms must match the specified charge
+      - name: RingsNotEmbedded
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: Rings may not be embedded in a larger system
+      - name: SingleDoubleBondsMatch
+        in: query
+        schema:
+          type: boolean
+          default: true
+        description: Single or double bonds match aromatic bonds
+      - name: ChainsMatchRings
+        in: query
+        schema:
+          type: boolean
+          default: true
+        description: Chain bonds in query may match rings in hits
+      - name: StripHydrogen
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: Remove explicit hydrogens before searching
+      - name: Stereo
+        in: query
+        schema:
+          type: string
+          enum:
+          - ignore
+          - exact
+          - relative
+          - nonconflicting
+          default: ignore
+        description: How to handle stereo
+      - name: MaxSeconds
+        in: query
+        schema:
+          type: integer
+        description: Maximum search time in seconds
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+          default: 2000000
+        description: Maximum number of hits
+      - name: listkey
+        in: query
+        schema:
+          type: string
+        description: Restrict to matches within hits from prior search
+      - name: callback
+        in: query
+        schema:
+          type: string
+        description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/Timeout'
+  /compound/fastsuperstructure/cid/{cid}/cids/{format}:
+    get:
+      tags:
+      - Structure Search
+      summary: Superstructure search by CID
+      description: Perform superstructure search using compound CID
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Compound ID (CID)
+        example: 2244
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - XML
+          - JSON
+          - JSONP
+          - ASNT
+          - ASNB
+          default: JSON
+        description: Output format
+      - name: MatchIsotopes
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: Atoms must be of the specified isotope
+      - name: MatchCharges
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: Atoms must match the specified charge
+      - name: MaxSeconds
+        in: query
+        schema:
+          type: integer
+        description: Maximum search time in seconds
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+          default: 2000000
+        description: Maximum number of hits
+      - name: callback
+        in: query
+        schema:
+          type: string
+        description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/Timeout'
+  /compound/fastsimilarity_2d/cid/{cid}/cids/{format}:
+    get:
+      tags:
+      - Structure Search
+      summary: 2D similarity search by CID
+      description: Perform 2D similarity search using compound CID
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Compound ID (CID)
+        example: 2244
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - XML
+          - JSON
+          - JSONP
+          - ASNT
+          - ASNB
+          default: JSON
+        description: Output format
+      - name: Threshold
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 100
+          default: 90
+        description: Minimum Tanimoto score for a hit
+      - name: MaxSeconds
+        in: query
+        schema:
+          type: integer
+        description: Maximum search time in seconds
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+          default: 2000000
+        description: Maximum number of hits
+      - name: listkey
+        in: query
+        schema:
+          type: string
+        description: Restrict to matches within hits from prior search
+      - name: callback
+        in: query
+        schema:
+          type: string
+        description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/Timeout'
+  /compound/fastidentity/smiles/{smiles}/cids/{format}:
+    get:
+      tags:
+      - Structure Search
+      summary: Identity search by SMILES
+      description: Perform identity search using SMILES string
+      parameters:
+      - name: smiles
+        in: path
+        required: true
+        schema:
+          type: string
+        description: SMILES string (URL-encoded)
+        example: CCCCC
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - XML
+          - JSON
+          - JSONP
+          - ASNT
+          - ASNB
+          default: JSON
+        description: Output format
+      - name: identity_type
+        in: query
+        schema:
+          type: string
+          enum:
+          - same_connectivity
+          - same_tautomer
+          - same_stereo
+          - same_isotope
+          - same_stereo_isotope
+          - nonconflicting_stereo
+          - same_isotope_nonconflicting_stereo
+          default: same_stereo_isotope
+        description: Type of identity matching
+      - name: MaxSeconds
+        in: query
+        schema:
+          type: integer
+        description: Maximum search time in seconds
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+          default: 2000000
+        description: Maximum number of hits
+      - name: listkey
+        in: query
+        schema:
+          type: string
+        description: Restrict to matches within hits from prior search
+      - name: callback
+        in: query
+        schema:
+          type: string
+        description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/Timeout'
+  /compound/fastformula/{formula}/cids/{format}:
+    get:
+      tags:
+      - Structure Search
+      summary: Molecular formula search
+      description: Perform molecular formula search
+      parameters:
+      - name: formula
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Molecular formula
+        example: C10H21N
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - XML
+          - JSON
+          - JSONP
+          - ASNT
+          - ASNB
+          default: JSON
+        description: Output format
+      - name: AllowOtherElements
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: Allow other elements to be present in addition to those specified
+      - name: MaxSeconds
+        in: query
+        schema:
+          type: integer
+        description: Maximum search time in seconds
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+          default: 2000000
+        description: Maximum number of hits
+      - name: listkey
+        in: query
+        schema:
+          type: string
+        description: Restrict to matches within hits from prior search
+      - name: callback
+        in: query
+        schema:
+          type: string
+        description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/Timeout'
+components:
+  schemas:
+    IdentifierList:
+      type: object
+      description: List of identifiers
+      properties:
+        IdentifierList:
+          type: object
+          properties:
+            CID:
+              type: array
+              items:
+                type: integer
+            SID:
+              type: array
+              items:
+                type: integer
+            AID:
+              type: array
+              items:
+                type: integer
+            ListKey:
+              type: string
+            CacheKey:
+              type: string
+            Size:
+              type: integer
+    Fault:
+      type: object
+      description: Error response
+      properties:
+        Fault:
+          type: object
+          properties:
+            Code:
+              type: string
+            Message:
+              type: string
+            Details:
+              type: array
+              items:
+                type: string
+  responses:
+    Timeout:
+      description: The request timed out, from server overload or too broad a request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The input record was not found (e.g. invalid CID)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    ServiceUnavailable:
+      description: Too many requests or server is busy, retry later
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        text/html:
+          schema:
+            type: string
+    BadRequest:
+      description: Request is improperly formed (syntax error in the URL, POST body, etc.)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
