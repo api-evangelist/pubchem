@@ -1,0 +1,1000 @@
+openapi: 3.0.3
+info:
+  title: PubChem PUG REST API
+  description: |
+    PUG REST is a REST-style version of PUG (Power User Gateway), a web interface for accessing PubChem data and services. PUG REST provides access to the data in PubChem Compounds as well as specialized chemical structure search services.
+    
+    The service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.
+  version: 1.0.0
+  contact:
+    email: pubchem-help@ncbi.nlm.nih.gov
+  license:
+    name: Public Domain
+    url: https://www.ncbi.nlm.nih.gov/home/about/policies/
+
+servers:
+  - url: https://pubchem.ncbi.nlm.nih.gov/rest/pug
+    description: PubChem PUG REST API
+
+tags:
+  - name: Compounds
+    description: Operations on compound records
+  - name: Structure Search
+    description: Chemical structure search operations
+  - name: Utilities
+    description: Utility operations
+
+paths:
+  # Compound endpoints
+  /compound/cid/{cids}/{format}:
+    get:
+      tags:
+        - Compounds
+      summary: Get compound records by CID
+      description: Retrieve full compound records for the specified CIDs
+      parameters:
+        - name: cids
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Comma-separated list of Compound IDs (CIDs)
+          example: "2244,5793"
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [XML, JSON, JSONP, ASNT, ASNB, SDF, PNG, TXT]
+            default: JSON
+          description: Output format
+        - name: record_type
+          in: query
+          schema:
+            type: string
+            enum: [2d, 3d]
+            default: 2d
+          description: Type of conformer for compounds
+        - name: image_size
+          in: query
+          schema:
+            type: string
+            default: large
+          description: Image size - large (300x300), small (100x100), or custom (e.g. 320x240)
+        - name: callback
+          in: query
+          schema:
+            type: string
+          description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompoundRecords'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CompoundRecords'
+            chemical/x-mdl-sdfile:
+              schema:
+                type: string
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  /compound/name/{name}/{format}:
+    get:
+      tags:
+        - Compounds
+      summary: Get compound records by name
+      description: Retrieve compound records for the specified chemical name
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Chemical name
+          example: "aspirin"
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [XML, JSON, JSONP, ASNT, ASNB, SDF, PNG, TXT]
+            default: JSON
+          description: Output format
+        - name: name_type
+          in: query
+          schema:
+            type: string
+            enum: [word, complete]
+          description: Name matching type
+        - name: record_type
+          in: query
+          schema:
+            type: string
+            enum: [2d, 3d]
+            default: 2d
+          description: Type of conformer for compounds
+        - name: image_size
+          in: query
+          schema:
+            type: string
+            default: large
+          description: Image size for PNG format
+        - name: callback
+          in: query
+          schema:
+            type: string
+          description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompoundRecords'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  /compound/smiles/{smiles}/{format}:
+    get:
+      tags:
+        - Compounds
+      summary: Get compound records by SMILES
+      description: Retrieve compound records for the specified SMILES string
+      parameters:
+        - name: smiles
+          in: path
+          required: true
+          schema:
+            type: string
+          description: SMILES string (URL-encoded)
+          example: "CCCC"
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [XML, JSON, JSONP, ASNT, ASNB, SDF, PNG, TXT]
+            default: JSON
+          description: Output format
+        - name: record_type
+          in: query
+          schema:
+            type: string
+            enum: [2d, 3d]
+            default: 2d
+          description: Type of conformer for compounds
+        - name: image_size
+          in: query
+          schema:
+            type: string
+            default: large
+          description: Image size for PNG format
+        - name: callback
+          in: query
+          schema:
+            type: string
+          description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompoundRecords'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  /compound/inchikey/{inchikey}/{format}:
+    get:
+      tags:
+        - Compounds
+      summary: Get compound records by InChI Key
+      description: Retrieve compound records for the specified InChI Key
+      parameters:
+        - name: inchikey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: InChI Key
+          example: "BPGDAMSIGCZZLK-UHFFFAOYSA-N"
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [XML, JSON, JSONP, ASNT, ASNB, SDF, PNG, TXT]
+            default: JSON
+          description: Output format
+        - name: record_type
+          in: query
+          schema:
+            type: string
+            enum: [2d, 3d]
+            default: 2d
+          description: Type of conformer for compounds
+        - name: image_size
+          in: query
+          schema:
+            type: string
+            default: large
+          description: Image size for PNG format
+        - name: callback
+          in: query
+          schema:
+            type: string
+          description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompoundRecords'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  /compound/cid/{cids}/property/{properties}/{format}:
+    get:
+      tags:
+        - Compounds
+      summary: Get compound properties
+      description: Retrieve specific properties for the specified compounds
+      parameters:
+        - name: cids
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Comma-separated list of Compound IDs (CIDs)
+          example: "1,2,3,4,5"
+        - name: properties
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Comma-separated list of property names
+          example: "MolecularFormula,MolecularWeight,InChIKey"
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [XML, JSON, JSONP, ASNT, ASNB, CSV, TXT]
+            default: JSON
+          description: Output format
+        - name: callback
+          in: query
+          schema:
+            type: string
+          description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyTable'
+            text/csv:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  /compound/cid/{cids}/synonyms/{format}:
+    get:
+      tags:
+        - Compounds
+      summary: Get compound synonyms
+      description: Retrieve synonyms for the specified compounds
+      parameters:
+        - name: cids
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Comma-separated list of Compound IDs (CIDs)
+          example: "2244"
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [XML, JSON, JSONP, ASNT, ASNB, TXT]
+            default: JSON
+          description: Output format
+        - name: callback
+          in: query
+          schema:
+            type: string
+          description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InformationList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  # Structure Search endpoints
+  /compound/fastsubstructure/smiles/{smiles}/cids/{format}:
+    get:
+      tags:
+        - Structure Search
+      summary: Substructure search by SMILES
+      description: Perform substructure search using SMILES string
+      parameters:
+        - name: smiles
+          in: path
+          required: true
+          schema:
+            type: string
+          description: SMILES string (URL-encoded)
+          example: "C3=NC1=C(C=NC2=C1C=NC=C2)[N]3"
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [XML, JSON, JSONP, ASNT, ASNB]
+            default: JSON
+          description: Output format
+        - name: MatchIsotopes
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Atoms must be of the specified isotope
+        - name: MatchCharges
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Atoms must match the specified charge
+        - name: RingsNotEmbedded
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Rings may not be embedded in a larger system
+        - name: SingleDoubleBondsMatch
+          in: query
+          schema:
+            type: boolean
+            default: true
+          description: Single or double bonds match aromatic bonds
+        - name: ChainsMatchRings
+          in: query
+          schema:
+            type: boolean
+            default: true
+          description: Chain bonds in query may match rings in hits
+        - name: StripHydrogen
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Remove explicit hydrogens before searching
+        - name: Stereo
+          in: query
+          schema:
+            type: string
+            enum: [ignore, exact, relative, nonconflicting]
+            default: ignore
+          description: How to handle stereo
+        - name: MaxSeconds
+          in: query
+          schema:
+            type: integer
+          description: Maximum search time in seconds
+        - name: MaxRecords
+          in: query
+          schema:
+            type: integer
+            default: 2000000
+          description: Maximum number of hits
+        - name: listkey
+          in: query
+          schema:
+            type: string
+          description: Restrict to matches within hits from prior search
+        - name: callback
+          in: query
+          schema:
+            type: string
+          description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/Timeout'
+
+  /compound/fastsuperstructure/cid/{cid}/cids/{format}:
+    get:
+      tags:
+        - Structure Search
+      summary: Superstructure search by CID
+      description: Perform superstructure search using compound CID
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Compound ID (CID)
+          example: 2244
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [XML, JSON, JSONP, ASNT, ASNB]
+            default: JSON
+          description: Output format
+        - name: MatchIsotopes
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Atoms must be of the specified isotope
+        - name: MatchCharges
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Atoms must match the specified charge
+        - name: MaxSeconds
+          in: query
+          schema:
+            type: integer
+          description: Maximum search time in seconds
+        - name: MaxRecords
+          in: query
+          schema:
+            type: integer
+            default: 2000000
+          description: Maximum number of hits
+        - name: callback
+          in: query
+          schema:
+            type: string
+          description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/Timeout'
+
+  /compound/fastsimilarity_2d/cid/{cid}/cids/{format}:
+    get:
+      tags:
+        - Structure Search
+      summary: 2D similarity search by CID
+      description: Perform 2D similarity search using compound CID
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Compound ID (CID)
+          example: 2244
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [XML, JSON, JSONP, ASNT, ASNB]
+            default: JSON
+          description: Output format
+        - name: Threshold
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 100
+            default: 90
+          description: Minimum Tanimoto score for a hit
+        - name: MaxSeconds
+          in: query
+          schema:
+            type: integer
+          description: Maximum search time in seconds
+        - name: MaxRecords
+          in: query
+          schema:
+            type: integer
+            default: 2000000
+          description: Maximum number of hits
+        - name: listkey
+          in: query
+          schema:
+            type: string
+          description: Restrict to matches within hits from prior search
+        - name: callback
+          in: query
+          schema:
+            type: string
+          description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/Timeout'
+
+  /compound/fastidentity/smiles/{smiles}/cids/{format}:
+    get:
+      tags:
+        - Structure Search
+      summary: Identity search by SMILES
+      description: Perform identity search using SMILES string
+      parameters:
+        - name: smiles
+          in: path
+          required: true
+          schema:
+            type: string
+          description: SMILES string (URL-encoded)
+          example: "CCCCC"
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [XML, JSON, JSONP, ASNT, ASNB]
+            default: JSON
+          description: Output format
+        - name: identity_type
+          in: query
+          schema:
+            type: string
+            enum: [same_connectivity, same_tautomer, same_stereo, same_isotope, same_stereo_isotope, nonconflicting_stereo, same_isotope_nonconflicting_stereo]
+            default: same_stereo_isotope
+          description: Type of identity matching
+        - name: MaxSeconds
+          in: query
+          schema:
+            type: integer
+          description: Maximum search time in seconds
+        - name: MaxRecords
+          in: query
+          schema:
+            type: integer
+            default: 2000000
+          description: Maximum number of hits
+        - name: listkey
+          in: query
+          schema:
+            type: string
+          description: Restrict to matches within hits from prior search
+        - name: callback
+          in: query
+          schema:
+            type: string
+          description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/Timeout'
+
+  /compound/fastformula/{formula}/cids/{format}:
+    get:
+      tags:
+        - Structure Search
+      summary: Molecular formula search
+      description: Perform molecular formula search
+      parameters:
+        - name: formula
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Molecular formula
+          example: "C10H21N"
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [XML, JSON, JSONP, ASNT, ASNB]
+            default: JSON
+          description: Output format
+        - name: AllowOtherElements
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Allow other elements to be present in addition to those specified
+        - name: MaxSeconds
+          in: query
+          schema:
+            type: integer
+          description: Maximum search time in seconds
+        - name: MaxRecords
+          in: query
+          schema:
+            type: integer
+            default: 2000000
+          description: Maximum number of hits
+        - name: listkey
+          in: query
+          schema:
+            type: string
+          description: Restrict to matches within hits from prior search
+        - name: callback
+          in: query
+          schema:
+            type: string
+          description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/Timeout'
+
+  
+  /standardize/smiles/{smiles}/{format}:
+    get:
+      tags:
+        - Utilities
+      summary: Standardize SMILES
+      description: Returns the standardized form of the input SMILES string
+      parameters:
+        - name: smiles
+          in: path
+          required: true
+          schema:
+            type: string
+          description: SMILES string to standardize
+          example: "CCCC"
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [SDF, XML, JSON, JSONP, ASNT, ASNB]
+            default: JSON
+          description: Output format
+        - name: include_components
+          in: query
+          schema:
+            type: boolean
+            default: true
+          description: Include components and neutralized forms
+        - name: callback
+          in: query
+          schema:
+            type: string
+          description: Callback function name for JSONP format
+      responses:
+        '200':
+          description: Successful response
+          content:
+            chemical/x-mdl-sdfile:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+
+components:
+  schemas:
+    CompoundRecords:
+      type: object
+      description: Collection of compound records
+      properties:
+        PC_Compounds:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompoundRecord'
+
+    CompoundRecord:
+      type: object
+      description: A single compound record
+      properties:
+        id:
+          type: object
+          properties:
+            id:
+              type: object
+              properties:
+                cid:
+                  type: integer
+        atoms:
+          type: object
+        bonds:
+          type: object
+        stereo:
+          type: array
+          items:
+            type: object
+        props:
+          type: array
+          items:
+            type: object
+
+    PropertyTable:
+      type: object
+      description: Table of compound properties
+      properties:
+        PropertyTable:
+          type: object
+          properties:
+            Properties:
+              type: array
+              items:
+                type: object
+                properties:
+                  CID:
+                    type: integer
+                  MolecularFormula:
+                    type: string
+                  MolecularWeight:
+                    type: string
+                  SMILES:
+                    type: string
+                  InChI:
+                    type: string
+                  InChIKey:
+                    type: string
+                  IUPACName:
+                    type: string
+                  XLogP:
+                    type: number
+                  ExactMass:
+                    type: string
+                  MonoisotopicMass:
+                    type: string
+                  TPSA:
+                    type: number
+                  Complexity:
+                    type: integer
+                  Charge:
+                    type: integer
+                  HBondDonorCount:
+                    type: integer
+                  HBondAcceptorCount:
+                    type: integer
+                  RotatableBondCount:
+                    type: integer
+                  HeavyAtomCount:
+                    type: integer
+
+    IdentifierList:
+      type: object
+      description: List of identifiers
+      properties:
+        IdentifierList:
+          type: object
+          properties:
+            CID:
+              type: array
+              items:
+                type: integer
+            SID:
+              type: array
+              items:
+                type: integer
+            AID:
+              type: array
+              items:
+                type: integer
+            ListKey:
+              type: string
+            CacheKey:
+              type: string
+            Size:
+              type: integer
+
+    InformationList:
+      type: object
+      description: List of information records
+      properties:
+        InformationList:
+          type: object
+          properties:
+            Information:
+              type: array
+              items:
+                type: object
+                properties:
+                  CID:
+                    type: integer
+                  SID:
+                    type: integer
+                  AID:
+                    type: integer
+                  Synonym:
+                    type: array
+                    items:
+                      type: string
+                  Title:
+                    type: string
+                  Description:
+                    type: string
+
+    Table:
+      type: object
+      description: Generic table structure
+      properties:
+        Table:
+          type: object
+          properties:
+            Columns:
+              type: object
+              properties:
+                Column:
+                  type: array
+                  items:
+                    type: string
+            Row:
+              type: array
+              items:
+                type: object
+                properties:
+                  Cell:
+                    type: array
+                    items:
+                      type: string
+
+    Fault:
+      type: object
+      description: Error response
+      properties:
+        Fault:
+          type: object
+          properties:
+            Code:
+              type: string
+            Message:
+              type: string
+            Details:
+              type: array
+              items:
+                type: string
+
+    Waiting:
+      type: object
+      description: Asynchronous operation in progress
+      properties:
+        Waiting:
+          type: object
+          properties:
+            ListKey:
+              type: string
+            Message:
+              type: string
+
+  responses:
+    BadRequest:
+      description: Request is improperly formed (syntax error in the URL, POST body, etc.)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+
+    NotFound:
+      description: The input record was not found (e.g. invalid CID)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+
+    ServiceUnavailable:
+      description: Too many requests or server is busy, retry later
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        text/html:
+          schema:
+            type: string
+
+    Timeout:
+      description: The request timed out, from server overload or too broad a request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'

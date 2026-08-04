@@ -1,0 +1,18 @@
+{
+  "provider": "pubchem",
+  "sources": [
+    "pubchem-compounds-api-openapi.yml",
+    "pubchem-structure-search-api-openapi.yml",
+    "pubchem-utilities-api-openapi.yml"
+  ],
+  "outputs": [
+    "pubchem-compounds-api-openapi.yml",
+    "pubchem-structure-search-api-openapi.yml",
+    "pubchem-utilities-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
