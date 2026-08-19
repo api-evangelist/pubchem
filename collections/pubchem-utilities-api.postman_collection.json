@@ -1,0 +1,284 @@
+{
+  "item": [
+    {
+      "id": "21038b54-77ab-473b-a694-170939a36baa",
+      "name": "Utilities",
+      "description": {
+        "content": "Utility operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "76bc1a1b-42d8-4aef-959a-b4771813e156",
+          "name": "Standardize SMILES",
+          "request": {
+            "name": "Standardize SMILES",
+            "description": {
+              "content": "Returns the standardized form of the input SMILES string",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "standardize",
+                "smiles",
+                ":smiles",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_components",
+                  "value": "true",
+                  "description": "Include components and neutralized forms"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Callback function name for JSONP format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "smiles",
+                  "description": "(Required) SMILES string to standardize"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "JSON",
+                  "key": "format",
+                  "description": "(Required) Output format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "chemical/x-mdl-sdfile"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24cf4fd0-0de6-4b75-93e4-115de809db69",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "standardize",
+                    "smiles",
+                    ":smiles",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_components",
+                      "value": "true"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string to standardize"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "chemical/x-mdl-sdfile"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd8372b2-0641-416e-b438-c101b69c9678",
+              "name": "Request is improperly formed (syntax error in the URL, POST body, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "standardize",
+                    "smiles",
+                    ":smiles",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_components",
+                      "value": "true"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string to standardize"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3025a60f-e98b-4708-892f-fc53e29d4344",
+              "name": "Too many requests or server is busy, retry later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "standardize",
+                    "smiles",
+                    ":smiles",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_components",
+                      "value": "true"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string to standardize"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://pubchem.ncbi.nlm.nih.gov/rest/pug",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "19db0e22-26ce-4894-99c3-3987ed16c74f",
+    "name": "PubChem PUG REST Compounds Utilities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "PUG REST is a REST-style version of PUG (Power User Gateway), a web interface for accessing PubChem data and services. PUG REST provides access to the data in PubChem Compounds as well as specialized chemical structure search services.\n\nThe service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.\n\n\nContact Support:\n Email: pubchem-help@ncbi.nlm.nih.gov",
+      "type": "text/plain"
+    }
+  }
+}

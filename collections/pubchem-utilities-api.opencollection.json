@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PubChem PUG REST Compounds Utilities API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Utilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Standardize SMILES",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/standardize/smiles/:smiles/:format",
+            "params": [
+              {
+                "name": "smiles",
+                "value": "CCCC",
+                "type": "path",
+                "description": "SMILES string to standardize"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Output format"
+              },
+              {
+                "name": "include_components",
+                "value": "",
+                "type": "query",
+                "description": "Include components and neutralized forms"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Callback function name for JSONP format"
+              }
+            ]
+          },
+          "docs": "Returns the standardized form of the input SMILES string"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

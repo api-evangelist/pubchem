@@ -1,0 +1,2032 @@
+{
+  "item": [
+    {
+      "id": "177c930f-cd4e-4bde-9f42-5a3766910d29",
+      "name": "Compounds",
+      "description": {
+        "content": "Operations on compound records",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b5f0ddc-21d2-4d18-a583-ac34273d431e",
+          "name": "Get compound records by CID",
+          "request": {
+            "name": "Get compound records by CID",
+            "description": {
+              "content": "Retrieve full compound records for the specified CIDs",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compound",
+                "cid",
+                ":cids",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "record_type",
+                  "value": "2d",
+                  "description": "Type of conformer for compounds"
+                },
+                {
+                  "disabled": false,
+                  "key": "image_size",
+                  "value": "large",
+                  "description": "Image size - large (300x300), small (100x100), or custom (e.g. 320x240)"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Callback function name for JSONP format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cids",
+                  "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "JSON",
+                  "key": "format",
+                  "description": "(Required) Output format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1edadff9-0e65-4da7-91f5-8bbd0563d76c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "cid",
+                    ":cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cids",
+                      "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PC_Compounds\": [\n    {\n      \"id\": {\n        \"id\": {\n          \"cid\": 922\n        }\n      },\n      \"atoms\": {},\n      \"bonds\": {}\n    },\n    {\n      \"id\": {\n        \"id\": {\n          \"cid\": 1342\n        }\n      },\n      \"atoms\": {},\n      \"bonds\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61fa396b-cd17-44ee-8a51-6d858b4b64ac",
+              "name": "Request is improperly formed (syntax error in the URL, POST body, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "cid",
+                    ":cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cids",
+                      "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ec3acb8-0831-4cf7-b772-417ed291ad85",
+              "name": "The input record was not found (e.g. invalid CID)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "cid",
+                    ":cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cids",
+                      "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "577db9f4-389e-4e51-8955-11cdf2f459a1",
+              "name": "Too many requests or server is busy, retry later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "cid",
+                    ":cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cids",
+                      "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c7ceb50-87fd-4387-a0d1-14069af40f39",
+          "name": "Get compound records by name",
+          "request": {
+            "name": "Get compound records by name",
+            "description": {
+              "content": "Retrieve compound records for the specified chemical name",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compound",
+                "name",
+                ":name",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name_type",
+                  "value": "<string>",
+                  "description": "Name matching type"
+                },
+                {
+                  "disabled": false,
+                  "key": "record_type",
+                  "value": "2d",
+                  "description": "Type of conformer for compounds"
+                },
+                {
+                  "disabled": false,
+                  "key": "image_size",
+                  "value": "large",
+                  "description": "Image size for PNG format"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Callback function name for JSONP format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Chemical name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "JSON",
+                  "key": "format",
+                  "description": "(Required) Output format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed533b64-c9e4-4f8e-a1f1-f637b3474bd8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "name",
+                    ":name",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Chemical name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PC_Compounds\": [\n    {\n      \"id\": {\n        \"id\": {\n          \"cid\": 9766\n        }\n      },\n      \"atoms\": {},\n      \"bonds\": {}\n    },\n    {\n      \"id\": {\n        \"id\": {\n          \"cid\": 641\n        }\n      },\n      \"atoms\": {},\n      \"bonds\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44096c31-0d56-4c06-9f0d-7cd441bfaf80",
+              "name": "Request is improperly formed (syntax error in the URL, POST body, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "name",
+                    ":name",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Chemical name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "335f0423-0bec-4f2f-babe-801eeecac45a",
+              "name": "The input record was not found (e.g. invalid CID)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "name",
+                    ":name",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Chemical name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75aeab45-50d4-490a-8e1e-b14a02a3423f",
+              "name": "Too many requests or server is busy, retry later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "name",
+                    ":name",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Chemical name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1cef2c05-3053-4197-bf2e-f9d47f95a045",
+          "name": "Get compound records by SMILES",
+          "request": {
+            "name": "Get compound records by SMILES",
+            "description": {
+              "content": "Retrieve compound records for the specified SMILES string",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compound",
+                "smiles",
+                ":smiles",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "record_type",
+                  "value": "2d",
+                  "description": "Type of conformer for compounds"
+                },
+                {
+                  "disabled": false,
+                  "key": "image_size",
+                  "value": "large",
+                  "description": "Image size for PNG format"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Callback function name for JSONP format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "smiles",
+                  "description": "(Required) SMILES string (URL-encoded)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "JSON",
+                  "key": "format",
+                  "description": "(Required) Output format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "166c8260-299a-4d80-a9f2-c24606087e6f",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "smiles",
+                    ":smiles",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PC_Compounds\": [\n    {\n      \"id\": {\n        \"id\": {\n          \"cid\": 9766\n        }\n      },\n      \"atoms\": {},\n      \"bonds\": {}\n    },\n    {\n      \"id\": {\n        \"id\": {\n          \"cid\": 641\n        }\n      },\n      \"atoms\": {},\n      \"bonds\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a73ee323-f8ac-40d4-9a92-33b4e59c58aa",
+              "name": "Request is improperly formed (syntax error in the URL, POST body, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "smiles",
+                    ":smiles",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca217efb-19da-4a32-aa9a-8beae2fed067",
+              "name": "The input record was not found (e.g. invalid CID)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "smiles",
+                    ":smiles",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd8a277a-fb2a-41fa-918b-4aff7b6ca1c3",
+              "name": "Too many requests or server is busy, retry later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "smiles",
+                    ":smiles",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7279dc4d-4ca3-4f60-b437-bdd2d6130c41",
+          "name": "Get compound records by InChI Key",
+          "request": {
+            "name": "Get compound records by InChI Key",
+            "description": {
+              "content": "Retrieve compound records for the specified InChI Key",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compound",
+                "inchikey",
+                ":inchikey",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "record_type",
+                  "value": "2d",
+                  "description": "Type of conformer for compounds"
+                },
+                {
+                  "disabled": false,
+                  "key": "image_size",
+                  "value": "large",
+                  "description": "Image size for PNG format"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Callback function name for JSONP format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "inchikey",
+                  "description": "(Required) InChI Key"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "JSON",
+                  "key": "format",
+                  "description": "(Required) Output format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a3f51d3-475e-4a49-91d1-8b02494822f5",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "inchikey",
+                    ":inchikey",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "inchikey",
+                      "description": "(Required) InChI Key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PC_Compounds\": [\n    {\n      \"id\": {\n        \"id\": {\n          \"cid\": 9766\n        }\n      },\n      \"atoms\": {},\n      \"bonds\": {}\n    },\n    {\n      \"id\": {\n        \"id\": {\n          \"cid\": 641\n        }\n      },\n      \"atoms\": {},\n      \"bonds\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d13f57bc-fd1c-4585-93a4-8a551ec7fc55",
+              "name": "Request is improperly formed (syntax error in the URL, POST body, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "inchikey",
+                    ":inchikey",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "inchikey",
+                      "description": "(Required) InChI Key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2b1ac42-9857-4ea6-b398-3f01adc25d7f",
+              "name": "The input record was not found (e.g. invalid CID)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "inchikey",
+                    ":inchikey",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "inchikey",
+                      "description": "(Required) InChI Key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0af074f2-cd7b-41fa-bd49-bcc88864b86c",
+              "name": "Too many requests or server is busy, retry later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "inchikey",
+                    ":inchikey",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record_type",
+                      "value": "2d"
+                    },
+                    {
+                      "key": "image_size",
+                      "value": "large"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "inchikey",
+                      "description": "(Required) InChI Key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56c89a3d-87a6-4b13-988e-d48549dab089",
+          "name": "Get compound properties",
+          "request": {
+            "name": "Get compound properties",
+            "description": {
+              "content": "Retrieve specific properties for the specified compounds",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compound",
+                "cid",
+                ":cids",
+                "property",
+                ":properties",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Callback function name for JSONP format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cids",
+                  "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "properties",
+                  "description": "(Required) Comma-separated list of property names"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "JSON",
+                  "key": "format",
+                  "description": "(Required) Output format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca525c8a-81bc-4f43-9e17-182d5b821ab3",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "cid",
+                    ":cids",
+                    "property",
+                    ":properties",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cids",
+                      "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "properties",
+                      "description": "(Required) Comma-separated list of property names"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PropertyTable\": {\n    \"Properties\": [\n      {\n        \"CID\": 4936,\n        \"MolecularFormula\": \"string\",\n        \"MolecularWeight\": \"string\",\n        \"SMILES\": \"string\",\n        \"InChI\": \"string\",\n        \"InChIKey\": \"string\",\n        \"IUPACName\": \"string\",\n        \"XLogP\": 8993.355158236209,\n        \"ExactMass\": \"string\",\n        \"MonoisotopicMass\": \"string\",\n        \"TPSA\": 6708.749255480771,\n        \"Complexity\": 180,\n        \"Charge\": 5600,\n        \"HBondDonorCount\": 8240,\n        \"HBondAcceptorCount\": 1495,\n        \"RotatableBondCount\": 9535,\n        \"HeavyAtomCount\": 4728\n      },\n      {\n        \"CID\": 5630,\n        \"MolecularFormula\": \"string\",\n        \"MolecularWeight\": \"string\",\n        \"SMILES\": \"string\",\n        \"InChI\": \"string\",\n        \"InChIKey\": \"string\",\n        \"IUPACName\": \"string\",\n        \"XLogP\": 1380.2439825320278,\n        \"ExactMass\": \"string\",\n        \"MonoisotopicMass\": \"string\",\n        \"TPSA\": 2077.8425541376423,\n        \"Complexity\": 5821,\n        \"Charge\": 3016,\n        \"HBondDonorCount\": 7972,\n        \"HBondAcceptorCount\": 2407,\n        \"RotatableBondCount\": 9477,\n        \"HeavyAtomCount\": 1925\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86e412da-3c3f-4d57-9bd8-9cf3aab3c02a",
+              "name": "Request is improperly formed (syntax error in the URL, POST body, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "cid",
+                    ":cids",
+                    "property",
+                    ":properties",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cids",
+                      "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "properties",
+                      "description": "(Required) Comma-separated list of property names"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a2db021-34bc-4e8a-8894-2728eeb68efc",
+              "name": "The input record was not found (e.g. invalid CID)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "cid",
+                    ":cids",
+                    "property",
+                    ":properties",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cids",
+                      "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "properties",
+                      "description": "(Required) Comma-separated list of property names"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a89b6096-7b10-465b-a9fd-ae7c22a8196f",
+              "name": "Too many requests or server is busy, retry later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "cid",
+                    ":cids",
+                    "property",
+                    ":properties",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cids",
+                      "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "properties",
+                      "description": "(Required) Comma-separated list of property names"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "398b7948-e3a8-47fd-8c1e-365b08533178",
+          "name": "Get compound synonyms",
+          "request": {
+            "name": "Get compound synonyms",
+            "description": {
+              "content": "Retrieve synonyms for the specified compounds",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compound",
+                "cid",
+                ":cids",
+                "synonyms",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Callback function name for JSONP format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cids",
+                  "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "JSON",
+                  "key": "format",
+                  "description": "(Required) Output format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfae4c9d-504a-4555-8b12-04d9ff178e52",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "cid",
+                    ":cids",
+                    "synonyms",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cids",
+                      "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"InformationList\": {\n    \"Information\": [\n      {\n        \"CID\": 4014,\n        \"SID\": 5763,\n        \"AID\": 2456,\n        \"Synonym\": [\n          \"string\",\n          \"string\"\n        ],\n        \"Title\": \"string\",\n        \"Description\": \"string\"\n      },\n      {\n        \"CID\": 8048,\n        \"SID\": 5070,\n        \"AID\": 1773,\n        \"Synonym\": [\n          \"string\",\n          \"string\"\n        ],\n        \"Title\": \"string\",\n        \"Description\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28ec11e8-edd7-49f6-98b4-3cdc1dbc9f32",
+              "name": "Request is improperly formed (syntax error in the URL, POST body, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "cid",
+                    ":cids",
+                    "synonyms",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cids",
+                      "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61627e4f-3398-43e5-816c-43815d9f52c2",
+              "name": "The input record was not found (e.g. invalid CID)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "cid",
+                    ":cids",
+                    "synonyms",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cids",
+                      "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "100d7775-c09e-492f-b655-9c20ccede59a",
+              "name": "Too many requests or server is busy, retry later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "cid",
+                    ":cids",
+                    "synonyms",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cids",
+                      "description": "(Required) Comma-separated list of Compound IDs (CIDs)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://pubchem.ncbi.nlm.nih.gov/rest/pug",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ae77cd09-d946-47d2-958f-e06628eea9a0",
+    "name": "PubChem PUG REST Compounds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "PUG REST is a REST-style version of PUG (Power User Gateway), a web interface for accessing PubChem data and services. PUG REST provides access to the data in PubChem Compounds as well as specialized chemical structure search services.\n\nThe service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.\n\n\nContact Support:\n Email: pubchem-help@ncbi.nlm.nih.gov",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PubChem PUG REST Compounds API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Compounds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get compound records by CID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/:cids/:format",
+            "params": [
+              {
+                "name": "cids",
+                "value": "2244,5793",
+                "type": "path",
+                "description": "Comma-separated list of Compound IDs (CIDs)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Output format"
+              },
+              {
+                "name": "record_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of conformer for compounds"
+              },
+              {
+                "name": "image_size",
+                "value": "",
+                "type": "query",
+                "description": "Image size - large (300x300), small (100x100), or custom (e.g. 320x240)"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Callback function name for JSONP format"
+              }
+            ]
+          },
+          "docs": "Retrieve full compound records for the specified CIDs"
+        },
+        {
+          "info": {
+            "name": "Get compound records by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/:name/:format",
+            "params": [
+              {
+                "name": "name",
+                "value": "aspirin",
+                "type": "path",
+                "description": "Chemical name"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Output format"
+              },
+              {
+                "name": "name_type",
+                "value": "",
+                "type": "query",
+                "description": "Name matching type"
+              },
+              {
+                "name": "record_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of conformer for compounds"
+              },
+              {
+                "name": "image_size",
+                "value": "",
+                "type": "query",
+                "description": "Image size for PNG format"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Callback function name for JSONP format"
+              }
+            ]
+          },
+          "docs": "Retrieve compound records for the specified chemical name"
+        },
+        {
+          "info": {
+            "name": "Get compound records by SMILES",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/:smiles/:format",
+            "params": [
+              {
+                "name": "smiles",
+                "value": "CCCC",
+                "type": "path",
+                "description": "SMILES string (URL-encoded)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Output format"
+              },
+              {
+                "name": "record_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of conformer for compounds"
+              },
+              {
+                "name": "image_size",
+                "value": "",
+                "type": "query",
+                "description": "Image size for PNG format"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Callback function name for JSONP format"
+              }
+            ]
+          },
+          "docs": "Retrieve compound records for the specified SMILES string"
+        },
+        {
+          "info": {
+            "name": "Get compound records by InChI Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/inchikey/:inchikey/:format",
+            "params": [
+              {
+                "name": "inchikey",
+                "value": "BPGDAMSIGCZZLK-UHFFFAOYSA-N",
+                "type": "path",
+                "description": "InChI Key"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Output format"
+              },
+              {
+                "name": "record_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of conformer for compounds"
+              },
+              {
+                "name": "image_size",
+                "value": "",
+                "type": "query",
+                "description": "Image size for PNG format"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Callback function name for JSONP format"
+              }
+            ]
+          },
+          "docs": "Retrieve compound records for the specified InChI Key"
+        },
+        {
+          "info": {
+            "name": "Get compound properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/:cids/property/:properties/:format",
+            "params": [
+              {
+                "name": "cids",
+                "value": "1,2,3,4,5",
+                "type": "path",
+                "description": "Comma-separated list of Compound IDs (CIDs)"
+              },
+              {
+                "name": "properties",
+                "value": "MolecularFormula,MolecularWeight,InChIKey",
+                "type": "path",
+                "description": "Comma-separated list of property names"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Output format"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Callback function name for JSONP format"
+              }
+            ]
+          },
+          "docs": "Retrieve specific properties for the specified compounds"
+        },
+        {
+          "info": {
+            "name": "Get compound synonyms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/:cids/synonyms/:format",
+            "params": [
+              {
+                "name": "cids",
+                "value": "2244",
+                "type": "path",
+                "description": "Comma-separated list of Compound IDs (CIDs)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Output format"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Callback function name for JSONP format"
+              }
+            ]
+          },
+          "docs": "Retrieve synonyms for the specified compounds"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

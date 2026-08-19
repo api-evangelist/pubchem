@@ -1,0 +1,329 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PubChem PUG REST Compounds Structure Search API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Structure Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Substructure search by SMILES",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/fastsubstructure/smiles/:smiles/cids/:format",
+            "params": [
+              {
+                "name": "smiles",
+                "value": "C3=NC1=C(C=NC2=C1C=NC=C2)[N]3",
+                "type": "path",
+                "description": "SMILES string (URL-encoded)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Output format"
+              },
+              {
+                "name": "MatchIsotopes",
+                "value": "",
+                "type": "query",
+                "description": "Atoms must be of the specified isotope"
+              },
+              {
+                "name": "MatchCharges",
+                "value": "",
+                "type": "query",
+                "description": "Atoms must match the specified charge"
+              },
+              {
+                "name": "RingsNotEmbedded",
+                "value": "",
+                "type": "query",
+                "description": "Rings may not be embedded in a larger system"
+              },
+              {
+                "name": "SingleDoubleBondsMatch",
+                "value": "",
+                "type": "query",
+                "description": "Single or double bonds match aromatic bonds"
+              },
+              {
+                "name": "ChainsMatchRings",
+                "value": "",
+                "type": "query",
+                "description": "Chain bonds in query may match rings in hits"
+              },
+              {
+                "name": "StripHydrogen",
+                "value": "",
+                "type": "query",
+                "description": "Remove explicit hydrogens before searching"
+              },
+              {
+                "name": "Stereo",
+                "value": "",
+                "type": "query",
+                "description": "How to handle stereo"
+              },
+              {
+                "name": "MaxSeconds",
+                "value": "",
+                "type": "query",
+                "description": "Maximum search time in seconds"
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of hits"
+              },
+              {
+                "name": "listkey",
+                "value": "",
+                "type": "query",
+                "description": "Restrict to matches within hits from prior search"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Callback function name for JSONP format"
+              }
+            ]
+          },
+          "docs": "Perform substructure search using SMILES string"
+        },
+        {
+          "info": {
+            "name": "Superstructure search by CID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/fastsuperstructure/cid/:cid/cids/:format",
+            "params": [
+              {
+                "name": "cid",
+                "value": "2244",
+                "type": "path",
+                "description": "Compound ID (CID)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Output format"
+              },
+              {
+                "name": "MatchIsotopes",
+                "value": "",
+                "type": "query",
+                "description": "Atoms must be of the specified isotope"
+              },
+              {
+                "name": "MatchCharges",
+                "value": "",
+                "type": "query",
+                "description": "Atoms must match the specified charge"
+              },
+              {
+                "name": "MaxSeconds",
+                "value": "",
+                "type": "query",
+                "description": "Maximum search time in seconds"
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of hits"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Callback function name for JSONP format"
+              }
+            ]
+          },
+          "docs": "Perform superstructure search using compound CID"
+        },
+        {
+          "info": {
+            "name": "2D similarity search by CID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/fastsimilarity_2d/cid/:cid/cids/:format",
+            "params": [
+              {
+                "name": "cid",
+                "value": "2244",
+                "type": "path",
+                "description": "Compound ID (CID)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Output format"
+              },
+              {
+                "name": "Threshold",
+                "value": "",
+                "type": "query",
+                "description": "Minimum Tanimoto score for a hit"
+              },
+              {
+                "name": "MaxSeconds",
+                "value": "",
+                "type": "query",
+                "description": "Maximum search time in seconds"
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of hits"
+              },
+              {
+                "name": "listkey",
+                "value": "",
+                "type": "query",
+                "description": "Restrict to matches within hits from prior search"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Callback function name for JSONP format"
+              }
+            ]
+          },
+          "docs": "Perform 2D similarity search using compound CID"
+        },
+        {
+          "info": {
+            "name": "Identity search by SMILES",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/fastidentity/smiles/:smiles/cids/:format",
+            "params": [
+              {
+                "name": "smiles",
+                "value": "CCCCC",
+                "type": "path",
+                "description": "SMILES string (URL-encoded)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Output format"
+              },
+              {
+                "name": "identity_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of identity matching"
+              },
+              {
+                "name": "MaxSeconds",
+                "value": "",
+                "type": "query",
+                "description": "Maximum search time in seconds"
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of hits"
+              },
+              {
+                "name": "listkey",
+                "value": "",
+                "type": "query",
+                "description": "Restrict to matches within hits from prior search"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Callback function name for JSONP format"
+              }
+            ]
+          },
+          "docs": "Perform identity search using SMILES string"
+        },
+        {
+          "info": {
+            "name": "Molecular formula search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/fastformula/:formula/cids/:format",
+            "params": [
+              {
+                "name": "formula",
+                "value": "C10H21N",
+                "type": "path",
+                "description": "Molecular formula"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Output format"
+              },
+              {
+                "name": "AllowOtherElements",
+                "value": "",
+                "type": "query",
+                "description": "Allow other elements to be present in addition to those specified"
+              },
+              {
+                "name": "MaxSeconds",
+                "value": "",
+                "type": "query",
+                "description": "Maximum search time in seconds"
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of hits"
+              },
+              {
+                "name": "listkey",
+                "value": "",
+                "type": "query",
+                "description": "Restrict to matches within hits from prior search"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Callback function name for JSONP format"
+              }
+            ]
+          },
+          "docs": "Perform molecular formula search"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

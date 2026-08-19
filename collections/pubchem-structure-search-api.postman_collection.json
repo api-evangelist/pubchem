@@ -1,0 +1,2512 @@
+{
+  "item": [
+    {
+      "id": "5e4f19c8-04df-4450-8489-b1b6531e1b2c",
+      "name": "Structure Search",
+      "description": {
+        "content": "Chemical structure search operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e33be3e8-f70d-4fd0-bf9f-2b25ccb1ba25",
+          "name": "Substructure search by SMILES",
+          "request": {
+            "name": "Substructure search by SMILES",
+            "description": {
+              "content": "Perform substructure search using SMILES string",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compound",
+                "fastsubstructure",
+                "smiles",
+                ":smiles",
+                "cids",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "MatchIsotopes",
+                  "value": "false",
+                  "description": "Atoms must be of the specified isotope"
+                },
+                {
+                  "disabled": false,
+                  "key": "MatchCharges",
+                  "value": "false",
+                  "description": "Atoms must match the specified charge"
+                },
+                {
+                  "disabled": false,
+                  "key": "RingsNotEmbedded",
+                  "value": "false",
+                  "description": "Rings may not be embedded in a larger system"
+                },
+                {
+                  "disabled": false,
+                  "key": "SingleDoubleBondsMatch",
+                  "value": "true",
+                  "description": "Single or double bonds match aromatic bonds"
+                },
+                {
+                  "disabled": false,
+                  "key": "ChainsMatchRings",
+                  "value": "true",
+                  "description": "Chain bonds in query may match rings in hits"
+                },
+                {
+                  "disabled": false,
+                  "key": "StripHydrogen",
+                  "value": "false",
+                  "description": "Remove explicit hydrogens before searching"
+                },
+                {
+                  "disabled": false,
+                  "key": "Stereo",
+                  "value": "ignore",
+                  "description": "How to handle stereo"
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxSeconds",
+                  "value": "<integer>",
+                  "description": "Maximum search time in seconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxRecords",
+                  "value": "2000000",
+                  "description": "Maximum number of hits"
+                },
+                {
+                  "disabled": false,
+                  "key": "listkey",
+                  "value": "<string>",
+                  "description": "Restrict to matches within hits from prior search"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Callback function name for JSONP format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "smiles",
+                  "description": "(Required) SMILES string (URL-encoded)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "JSON",
+                  "key": "format",
+                  "description": "(Required) Output format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8677f54e-1b6e-47b4-9572-747dd3ae8978",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsubstructure",
+                    "smiles",
+                    ":smiles",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MatchIsotopes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MatchCharges",
+                      "value": "false"
+                    },
+                    {
+                      "key": "RingsNotEmbedded",
+                      "value": "false"
+                    },
+                    {
+                      "key": "SingleDoubleBondsMatch",
+                      "value": "true"
+                    },
+                    {
+                      "key": "ChainsMatchRings",
+                      "value": "true"
+                    },
+                    {
+                      "key": "StripHydrogen",
+                      "value": "false"
+                    },
+                    {
+                      "key": "Stereo",
+                      "value": "ignore"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"IdentifierList\": {\n    \"CID\": [\n      5197,\n      7043\n    ],\n    \"SID\": [\n      9806,\n      5826\n    ],\n    \"AID\": [\n      9121,\n      4168\n    ],\n    \"ListKey\": \"string\",\n    \"CacheKey\": \"string\",\n    \"Size\": 1974\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5925ba48-4829-43ee-85f4-4997c9abbcb5",
+              "name": "Request is improperly formed (syntax error in the URL, POST body, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsubstructure",
+                    "smiles",
+                    ":smiles",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MatchIsotopes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MatchCharges",
+                      "value": "false"
+                    },
+                    {
+                      "key": "RingsNotEmbedded",
+                      "value": "false"
+                    },
+                    {
+                      "key": "SingleDoubleBondsMatch",
+                      "value": "true"
+                    },
+                    {
+                      "key": "ChainsMatchRings",
+                      "value": "true"
+                    },
+                    {
+                      "key": "StripHydrogen",
+                      "value": "false"
+                    },
+                    {
+                      "key": "Stereo",
+                      "value": "ignore"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b879f943-4a2b-40e1-b7b8-3b34a3a1fa14",
+              "name": "The input record was not found (e.g. invalid CID)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsubstructure",
+                    "smiles",
+                    ":smiles",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MatchIsotopes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MatchCharges",
+                      "value": "false"
+                    },
+                    {
+                      "key": "RingsNotEmbedded",
+                      "value": "false"
+                    },
+                    {
+                      "key": "SingleDoubleBondsMatch",
+                      "value": "true"
+                    },
+                    {
+                      "key": "ChainsMatchRings",
+                      "value": "true"
+                    },
+                    {
+                      "key": "StripHydrogen",
+                      "value": "false"
+                    },
+                    {
+                      "key": "Stereo",
+                      "value": "ignore"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20b49c4f-19d7-4afb-9922-9c07bc8f7a86",
+              "name": "Too many requests or server is busy, retry later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsubstructure",
+                    "smiles",
+                    ":smiles",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MatchIsotopes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MatchCharges",
+                      "value": "false"
+                    },
+                    {
+                      "key": "RingsNotEmbedded",
+                      "value": "false"
+                    },
+                    {
+                      "key": "SingleDoubleBondsMatch",
+                      "value": "true"
+                    },
+                    {
+                      "key": "ChainsMatchRings",
+                      "value": "true"
+                    },
+                    {
+                      "key": "StripHydrogen",
+                      "value": "false"
+                    },
+                    {
+                      "key": "Stereo",
+                      "value": "ignore"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a373248-3a8a-4531-b2b9-692b71b99207",
+              "name": "The request timed out, from server overload or too broad a request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsubstructure",
+                    "smiles",
+                    ":smiles",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MatchIsotopes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MatchCharges",
+                      "value": "false"
+                    },
+                    {
+                      "key": "RingsNotEmbedded",
+                      "value": "false"
+                    },
+                    {
+                      "key": "SingleDoubleBondsMatch",
+                      "value": "true"
+                    },
+                    {
+                      "key": "ChainsMatchRings",
+                      "value": "true"
+                    },
+                    {
+                      "key": "StripHydrogen",
+                      "value": "false"
+                    },
+                    {
+                      "key": "Stereo",
+                      "value": "ignore"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce5bf9ef-0a19-4b68-a4ed-475877e09be3",
+          "name": "Superstructure search by CID",
+          "request": {
+            "name": "Superstructure search by CID",
+            "description": {
+              "content": "Perform superstructure search using compound CID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compound",
+                "fastsuperstructure",
+                "cid",
+                ":cid",
+                "cids",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "MatchIsotopes",
+                  "value": "false",
+                  "description": "Atoms must be of the specified isotope"
+                },
+                {
+                  "disabled": false,
+                  "key": "MatchCharges",
+                  "value": "false",
+                  "description": "Atoms must match the specified charge"
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxSeconds",
+                  "value": "<integer>",
+                  "description": "Maximum search time in seconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxRecords",
+                  "value": "2000000",
+                  "description": "Maximum number of hits"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Callback function name for JSONP format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "cid",
+                  "description": "(Required) Compound ID (CID)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "JSON",
+                  "key": "format",
+                  "description": "(Required) Output format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b79757c-152b-4703-8393-8be53a8bdf1d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsuperstructure",
+                    "cid",
+                    ":cid",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MatchIsotopes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MatchCharges",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cid",
+                      "description": "(Required) Compound ID (CID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"IdentifierList\": {\n    \"CID\": [\n      1430,\n      7205\n    ],\n    \"SID\": [\n      9882,\n      4947\n    ],\n    \"AID\": [\n      2132,\n      4067\n    ],\n    \"ListKey\": \"string\",\n    \"CacheKey\": \"string\",\n    \"Size\": 7222\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76700b74-fb7a-4daf-be4a-a7835e7eb85e",
+              "name": "Request is improperly formed (syntax error in the URL, POST body, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsuperstructure",
+                    "cid",
+                    ":cid",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MatchIsotopes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MatchCharges",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cid",
+                      "description": "(Required) Compound ID (CID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94556c6d-23d3-43a8-8ad2-55e3fa07a54a",
+              "name": "The input record was not found (e.g. invalid CID)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsuperstructure",
+                    "cid",
+                    ":cid",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MatchIsotopes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MatchCharges",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cid",
+                      "description": "(Required) Compound ID (CID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b32f991-6d44-4996-b627-88a843166b7c",
+              "name": "Too many requests or server is busy, retry later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsuperstructure",
+                    "cid",
+                    ":cid",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MatchIsotopes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MatchCharges",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cid",
+                      "description": "(Required) Compound ID (CID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6792c6ad-336d-45a3-afaf-a39fab9185ca",
+              "name": "The request timed out, from server overload or too broad a request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsuperstructure",
+                    "cid",
+                    ":cid",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MatchIsotopes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MatchCharges",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cid",
+                      "description": "(Required) Compound ID (CID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ac59b06-5a1e-41bb-836e-37f75aba1793",
+          "name": "2D similarity search by CID",
+          "request": {
+            "name": "2D similarity search by CID",
+            "description": {
+              "content": "Perform 2D similarity search using compound CID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compound",
+                "fastsimilarity_2d",
+                "cid",
+                ":cid",
+                "cids",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Threshold",
+                  "value": "90",
+                  "description": "Minimum Tanimoto score for a hit"
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxSeconds",
+                  "value": "<integer>",
+                  "description": "Maximum search time in seconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxRecords",
+                  "value": "2000000",
+                  "description": "Maximum number of hits"
+                },
+                {
+                  "disabled": false,
+                  "key": "listkey",
+                  "value": "<string>",
+                  "description": "Restrict to matches within hits from prior search"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Callback function name for JSONP format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "cid",
+                  "description": "(Required) Compound ID (CID)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "JSON",
+                  "key": "format",
+                  "description": "(Required) Output format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5d06d2c-6c8e-4b3d-aa6e-d9a1df752ffe",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsimilarity_2d",
+                    "cid",
+                    ":cid",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Threshold",
+                      "value": "90"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cid",
+                      "description": "(Required) Compound ID (CID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"IdentifierList\": {\n    \"CID\": [\n      1430,\n      7205\n    ],\n    \"SID\": [\n      9882,\n      4947\n    ],\n    \"AID\": [\n      2132,\n      4067\n    ],\n    \"ListKey\": \"string\",\n    \"CacheKey\": \"string\",\n    \"Size\": 7222\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "280c6cd1-a0ef-4f30-b934-9f806c46d514",
+              "name": "Request is improperly formed (syntax error in the URL, POST body, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsimilarity_2d",
+                    "cid",
+                    ":cid",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Threshold",
+                      "value": "90"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cid",
+                      "description": "(Required) Compound ID (CID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0de4da0f-b2c6-427b-a8c4-a5244a42f449",
+              "name": "The input record was not found (e.g. invalid CID)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsimilarity_2d",
+                    "cid",
+                    ":cid",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Threshold",
+                      "value": "90"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cid",
+                      "description": "(Required) Compound ID (CID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64b67d36-f283-4e44-83b2-008f9e20a084",
+              "name": "Too many requests or server is busy, retry later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsimilarity_2d",
+                    "cid",
+                    ":cid",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Threshold",
+                      "value": "90"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cid",
+                      "description": "(Required) Compound ID (CID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66eaf961-ad9d-47c0-98fc-5c18bb0c800f",
+              "name": "The request timed out, from server overload or too broad a request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastsimilarity_2d",
+                    "cid",
+                    ":cid",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Threshold",
+                      "value": "90"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cid",
+                      "description": "(Required) Compound ID (CID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91ed1cea-360d-4573-ac99-6cadfbed53c0",
+          "name": "Identity search by SMILES",
+          "request": {
+            "name": "Identity search by SMILES",
+            "description": {
+              "content": "Perform identity search using SMILES string",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compound",
+                "fastidentity",
+                "smiles",
+                ":smiles",
+                "cids",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "identity_type",
+                  "value": "same_stereo_isotope",
+                  "description": "Type of identity matching"
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxSeconds",
+                  "value": "<integer>",
+                  "description": "Maximum search time in seconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxRecords",
+                  "value": "2000000",
+                  "description": "Maximum number of hits"
+                },
+                {
+                  "disabled": false,
+                  "key": "listkey",
+                  "value": "<string>",
+                  "description": "Restrict to matches within hits from prior search"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Callback function name for JSONP format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "smiles",
+                  "description": "(Required) SMILES string (URL-encoded)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "JSON",
+                  "key": "format",
+                  "description": "(Required) Output format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0d4b8e3-ffa4-41f9-864e-b4d20b664c2e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastidentity",
+                    "smiles",
+                    ":smiles",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identity_type",
+                      "value": "same_stereo_isotope"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"IdentifierList\": {\n    \"CID\": [\n      1430,\n      7205\n    ],\n    \"SID\": [\n      9882,\n      4947\n    ],\n    \"AID\": [\n      2132,\n      4067\n    ],\n    \"ListKey\": \"string\",\n    \"CacheKey\": \"string\",\n    \"Size\": 7222\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc0a9b9a-91b1-4aa2-8fd1-c521e856ac83",
+              "name": "Request is improperly formed (syntax error in the URL, POST body, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastidentity",
+                    "smiles",
+                    ":smiles",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identity_type",
+                      "value": "same_stereo_isotope"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b0a0370-c49d-43a3-b5a7-025333a5f1d1",
+              "name": "The input record was not found (e.g. invalid CID)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastidentity",
+                    "smiles",
+                    ":smiles",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identity_type",
+                      "value": "same_stereo_isotope"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c0e2924-fb8f-4ecd-8ec0-609d27b40a38",
+              "name": "Too many requests or server is busy, retry later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastidentity",
+                    "smiles",
+                    ":smiles",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identity_type",
+                      "value": "same_stereo_isotope"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7111192-8ba2-46da-ad37-80bc091ef898",
+              "name": "The request timed out, from server overload or too broad a request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastidentity",
+                    "smiles",
+                    ":smiles",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identity_type",
+                      "value": "same_stereo_isotope"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "smiles",
+                      "description": "(Required) SMILES string (URL-encoded)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f912f9b1-5f83-4047-bad6-bc3d56c00693",
+          "name": "Molecular formula search",
+          "request": {
+            "name": "Molecular formula search",
+            "description": {
+              "content": "Perform molecular formula search",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compound",
+                "fastformula",
+                ":formula",
+                "cids",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "AllowOtherElements",
+                  "value": "false",
+                  "description": "Allow other elements to be present in addition to those specified"
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxSeconds",
+                  "value": "<integer>",
+                  "description": "Maximum search time in seconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxRecords",
+                  "value": "2000000",
+                  "description": "Maximum number of hits"
+                },
+                {
+                  "disabled": false,
+                  "key": "listkey",
+                  "value": "<string>",
+                  "description": "Restrict to matches within hits from prior search"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Callback function name for JSONP format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formula",
+                  "description": "(Required) Molecular formula"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "JSON",
+                  "key": "format",
+                  "description": "(Required) Output format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32305753-65c6-4ff1-8d57-f5784cc5f51a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastformula",
+                    ":formula",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AllowOtherElements",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formula",
+                      "description": "(Required) Molecular formula"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"IdentifierList\": {\n    \"CID\": [\n      1430,\n      7205\n    ],\n    \"SID\": [\n      9882,\n      4947\n    ],\n    \"AID\": [\n      2132,\n      4067\n    ],\n    \"ListKey\": \"string\",\n    \"CacheKey\": \"string\",\n    \"Size\": 7222\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e611ea2b-f18b-4cc6-8db7-aeddb2ae30e8",
+              "name": "Request is improperly formed (syntax error in the URL, POST body, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastformula",
+                    ":formula",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AllowOtherElements",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formula",
+                      "description": "(Required) Molecular formula"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "153b3ab3-1bf4-4000-8a21-7a23408593c9",
+              "name": "The input record was not found (e.g. invalid CID)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastformula",
+                    ":formula",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AllowOtherElements",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formula",
+                      "description": "(Required) Molecular formula"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48d6746a-4f82-4ac5-ae11-42fcbe7362d3",
+              "name": "Too many requests or server is busy, retry later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastformula",
+                    ":formula",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AllowOtherElements",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formula",
+                      "description": "(Required) Molecular formula"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c006eab0-4445-4336-acdb-07ea51c9566b",
+              "name": "The request timed out, from server overload or too broad a request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compound",
+                    "fastformula",
+                    ":formula",
+                    "cids",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AllowOtherElements",
+                      "value": "false"
+                    },
+                    {
+                      "key": "MaxSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "2000000"
+                    },
+                    {
+                      "key": "listkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formula",
+                      "description": "(Required) Molecular formula"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "JSON",
+                      "key": "format",
+                      "description": "(Required) Output format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Fault\": {\n    \"Code\": \"string\",\n    \"Message\": \"string\",\n    \"Details\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://pubchem.ncbi.nlm.nih.gov/rest/pug",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4816b240-9e74-456d-bf78-5da0331bfe46",
+    "name": "PubChem PUG REST Compounds Structure Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "PUG REST is a REST-style version of PUG (Power User Gateway), a web interface for accessing PubChem data and services. PUG REST provides access to the data in PubChem Compounds as well as specialized chemical structure search services.\n\nThe service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.\n\n\nContact Support:\n Email: pubchem-help@ncbi.nlm.nih.gov",
+      "type": "text/plain"
+    }
+  }
+}
