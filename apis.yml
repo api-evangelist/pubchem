@@ -24,7 +24,7 @@ tags:
 url: https://pubchem.ncbi.nlm.nih.gov/
 created: "2026-06-13"
 modified: "2026-06-13"
-specificationVersion: "0.19"
+specificationVersion: '0.23'
 apis:
 - name: PubChem PUG View API
   description: >-
