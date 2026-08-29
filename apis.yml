@@ -1,5 +1,17 @@
 name: PubChem
 description: PubChem is NCBI's open chemistry database containing information on more than 100 million chemical compounds. It provides REST and view APIs for searching chemical structures, retrieving molecular properties, bioactivity data, safety information, and drug information. PubChem integrates data from hundreds of data sources and is freely accessible without authentication for standard use.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
