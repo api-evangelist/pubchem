@@ -196,6 +196,8 @@ apis:
   - type: Documentation
     url: https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest
 common:
+  - type: Website
+    url: https://www.nih.gov/
   - type: AgenticAccess
     url: agentic-access/pubchem-agentic-access.yml
   - type: DomainSecurity
