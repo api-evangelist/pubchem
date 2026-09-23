@@ -1,12 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: PubChem PUG REST Compounds API
   description: 'PUG REST is a REST-style version of PUG (Power User Gateway), a web interface for accessing PubChem data and services. PUG REST provides access to the data in PubChem Compounds as well as specialized chemical structure search services.
 
 
-    The service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.
-
-    '
+    The service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.'
   version: 1.0.0
   contact:
     email: pubchem-help@ncbi.nlm.nih.gov
@@ -93,6 +91,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getCompoundCidByCidsByFormat
+      x-operation-id-source: derived
   /compound/name/{name}/{format}:
     get:
       tags:
@@ -164,6 +164,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getCompoundNameByNameByFormat
+      x-operation-id-source: derived
   /compound/smiles/{smiles}/{format}:
     get:
       tags:
@@ -227,6 +229,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getCompoundSmilesBySmilesByFormat
+      x-operation-id-source: derived
   /compound/inchikey/{inchikey}/{format}:
     get:
       tags:
@@ -290,6 +294,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getCompoundInchikeyByInchikeyByFormat
+      x-operation-id-source: derived
   /compound/cid/{cids}/property/{properties}/{format}:
     get:
       tags:
@@ -347,6 +353,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getCompoundCidByCidsPropertyByPropertiesByFormat
+      x-operation-id-source: derived
   /compound/cid/{cids}/synonyms/{format}:
     get:
       tags:
@@ -393,8 +401,34 @@ paths:
           $ref: '#/components/responses/NotFound'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getCompoundCidByCidsSynonymsByFormat
+      x-operation-id-source: derived
 components:
   schemas:
+    CompoundRecord:
+      type: object
+      description: A single compound record
+      properties:
+        id:
+          type: object
+          properties:
+            id:
+              type: object
+              properties:
+                cid:
+                  type: integer
+        atoms:
+          type: object
+        bonds:
+          type: object
+        stereo:
+          type: array
+          items:
+            type: object
+        props:
+          type: array
+          items:
+            type: object
     InformationList:
       type: object
       description: List of information records
@@ -421,6 +455,29 @@ components:
                     type: string
                   Description:
                     type: string
+    Fault:
+      type: object
+      description: Error response
+      properties:
+        Fault:
+          type: object
+          properties:
+            Code:
+              type: string
+            Message:
+              type: string
+            Details:
+              type: array
+              items:
+                type: string
+    CompoundRecords:
+      type: object
+      description: Collection of compound records
+      properties:
+        PC_Compounds:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompoundRecord'
     PropertyTable:
       type: object
       description: Table of compound properties
@@ -467,56 +524,18 @@ components:
                     type: integer
                   HeavyAtomCount:
                     type: integer
-    CompoundRecord:
-      type: object
-      description: A single compound record
-      properties:
-        id:
-          type: object
-          properties:
-            id:
-              type: object
-              properties:
-                cid:
-                  type: integer
-        atoms:
-          type: object
-        bonds:
-          type: object
-        stereo:
-          type: array
-          items:
-            type: object
-        props:
-          type: array
-          items:
-            type: object
-    Fault:
-      type: object
-      description: Error response
-      properties:
-        Fault:
-          type: object
-          properties:
-            Code:
-              type: string
-            Message:
-              type: string
-            Details:
-              type: array
-              items:
-                type: string
-    CompoundRecords:
-      type: object
-      description: Collection of compound records
-      properties:
-        PC_Compounds:
-          type: array
-          items:
-            $ref: '#/components/schemas/CompoundRecord'
   responses:
     NotFound:
       description: The input record was not found (e.g. invalid CID)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: Request is improperly formed (syntax error in the URL, POST body, etc.)
       content:
         application/json:
           schema:
@@ -536,12 +555,3 @@ components:
         text/html:
           schema:
             type: string
-    BadRequest:
-      description: Request is improperly formed (syntax error in the URL, POST body, etc.)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'

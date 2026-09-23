@@ -1,12 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: PubChem PUG REST Compounds Structure Search API
+  title: PubChem PUG REST Structure Search API
   description: 'PUG REST is a REST-style version of PUG (Power User Gateway), a web interface for accessing PubChem data and services. PUG REST provides access to the data in PubChem Compounds as well as specialized chemical structure search services.
 
 
-    The service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.
-
-    '
+    The service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.'
   version: 1.0.0
   contact:
     email: pubchem-help@ncbi.nlm.nih.gov
@@ -130,6 +128,8 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '504':
           $ref: '#/components/responses/Timeout'
+      operationId: getCompoundFastsubstructureSmilesBySmilesCidsByFormat
+      x-operation-id-source: derived
   /compound/fastsuperstructure/cid/{cid}/cids/{format}:
     get:
       tags:
@@ -200,6 +200,8 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '504':
           $ref: '#/components/responses/Timeout'
+      operationId: getCompoundFastsuperstructureCidByCidCidsByFormat
+      x-operation-id-source: derived
   /compound/fastsimilarity_2d/cid/{cid}/cids/{format}:
     get:
       tags:
@@ -271,6 +273,8 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '504':
           $ref: '#/components/responses/Timeout'
+      operationId: getCompoundFastsimilarity2dCidByCidCidsByFormat
+      x-operation-id-source: derived
   /compound/fastidentity/smiles/{smiles}/cids/{format}:
     get:
       tags:
@@ -348,6 +352,8 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '504':
           $ref: '#/components/responses/Timeout'
+      operationId: getCompoundFastidentitySmilesBySmilesCidsByFormat
+      x-operation-id-source: derived
   /compound/fastformula/{formula}/cids/{format}:
     get:
       tags:
@@ -417,8 +423,65 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '504':
           $ref: '#/components/responses/Timeout'
+      operationId: getCompoundFastformulaByFormulaCidsByFormat
+      x-operation-id-source: derived
 components:
+  responses:
+    Timeout:
+      description: The request timed out, from server overload or too broad a request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The input record was not found (e.g. invalid CID)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: Request is improperly formed (syntax error in the URL, POST body, etc.)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    ServiceUnavailable:
+      description: Too many requests or server is busy, retry later
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        text/html:
+          schema:
+            type: string
   schemas:
+    Fault:
+      type: object
+      description: Error response
+      properties:
+        Fault:
+          type: object
+          properties:
+            Code:
+              type: string
+            Message:
+              type: string
+            Details:
+              type: array
+              items:
+                type: string
     IdentifierList:
       type: object
       description: List of identifiers
@@ -444,58 +507,3 @@ components:
               type: string
             Size:
               type: integer
-    Fault:
-      type: object
-      description: Error response
-      properties:
-        Fault:
-          type: object
-          properties:
-            Code:
-              type: string
-            Message:
-              type: string
-            Details:
-              type: array
-              items:
-                type: string
-  responses:
-    Timeout:
-      description: The request timed out, from server overload or too broad a request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    NotFound:
-      description: The input record was not found (e.g. invalid CID)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    ServiceUnavailable:
-      description: Too many requests or server is busy, retry later
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        text/html:
-          schema:
-            type: string
-    BadRequest:
-      description: Request is improperly formed (syntax error in the URL, POST body, etc.)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'

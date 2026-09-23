@@ -1,12 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: PubChem PUG REST Compounds Utilities API
+  title: PubChem PUG REST Utilities API
   description: 'PUG REST is a REST-style version of PUG (Power User Gateway), a web interface for accessing PubChem data and services. PUG REST provides access to the data in PubChem Compounds as well as specialized chemical structure search services.
 
 
-    The service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.
-
-    '
+    The service supports various input formats including chemical names, SMILES strings, InChI identifiers, and direct database identifiers. It can return data in multiple formats including JSON, XML, CSV, SDF, and PNG images.'
   version: 1.0.0
   contact:
     email: pubchem-help@ncbi.nlm.nih.gov
@@ -73,6 +71,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getStandardizeSmilesBySmilesByFormat
+      x-operation-id-source: derived
 components:
   responses:
     BadRequest:
