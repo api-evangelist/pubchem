@@ -427,24 +427,6 @@ paths:
       x-operation-id-source: derived
 components:
   responses:
-    Timeout:
-      description: The request timed out, from server overload or too broad a request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    NotFound:
-      description: The input record was not found (e.g. invalid CID)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'
     BadRequest:
       description: Request is improperly formed (syntax error in the URL, POST body, etc.)
       content:
@@ -466,6 +448,24 @@ components:
         text/html:
           schema:
             type: string
+    NotFound:
+      description: The input record was not found (e.g. invalid CID)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Timeout:
+      description: The request timed out, from server overload or too broad a request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
   schemas:
     Fault:
       type: object

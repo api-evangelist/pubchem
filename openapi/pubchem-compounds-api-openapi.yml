@@ -405,30 +405,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CompoundRecord:
-      type: object
-      description: A single compound record
-      properties:
-        id:
-          type: object
-          properties:
-            id:
-              type: object
-              properties:
-                cid:
-                  type: integer
-        atoms:
-          type: object
-        bonds:
-          type: object
-        stereo:
-          type: array
-          items:
-            type: object
-        props:
-          type: array
-          items:
-            type: object
     InformationList:
       type: object
       description: List of information records
@@ -455,6 +431,30 @@ components:
                     type: string
                   Description:
                     type: string
+    CompoundRecord:
+      type: object
+      description: A single compound record
+      properties:
+        id:
+          type: object
+          properties:
+            id:
+              type: object
+              properties:
+                cid:
+                  type: integer
+        atoms:
+          type: object
+        bonds:
+          type: object
+        stereo:
+          type: array
+          items:
+            type: object
+        props:
+          type: array
+          items:
+            type: object
     Fault:
       type: object
       description: Error response
@@ -525,15 +525,6 @@ components:
                   HeavyAtomCount:
                     type: integer
   responses:
-    NotFound:
-      description: The input record was not found (e.g. invalid CID)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'
     BadRequest:
       description: Request is improperly formed (syntax error in the URL, POST body, etc.)
       content:
@@ -555,3 +546,12 @@ components:
         text/html:
           schema:
             type: string
+    NotFound:
+      description: The input record was not found (e.g. invalid CID)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
