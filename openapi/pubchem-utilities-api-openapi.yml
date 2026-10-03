@@ -75,15 +75,6 @@ paths:
       x-operation-id-source: derived
 components:
   responses:
-    BadRequest:
-      description: Request is improperly formed (syntax error in the URL, POST body, etc.)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'
     ServiceUnavailable:
       description: Too many requests or server is busy, retry later
       content:
@@ -96,6 +87,15 @@ components:
         text/html:
           schema:
             type: string
+    BadRequest:
+      description: Request is improperly formed (syntax error in the URL, POST body, etc.)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
   schemas:
     Fault:
       type: object

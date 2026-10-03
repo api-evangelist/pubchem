@@ -426,62 +426,7 @@ paths:
       operationId: getCompoundFastformulaByFormulaCidsByFormat
       x-operation-id-source: derived
 components:
-  responses:
-    BadRequest:
-      description: Request is improperly formed (syntax error in the URL, POST body, etc.)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    ServiceUnavailable:
-      description: Too many requests or server is busy, retry later
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        text/html:
-          schema:
-            type: string
-    NotFound:
-      description: The input record was not found (e.g. invalid CID)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    Timeout:
-      description: The request timed out, from server overload or too broad a request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'
   schemas:
-    Fault:
-      type: object
-      description: Error response
-      properties:
-        Fault:
-          type: object
-          properties:
-            Code:
-              type: string
-            Message:
-              type: string
-            Details:
-              type: array
-              items:
-                type: string
     IdentifierList:
       type: object
       description: List of identifiers
@@ -507,3 +452,58 @@ components:
               type: string
             Size:
               type: integer
+    Fault:
+      type: object
+      description: Error response
+      properties:
+        Fault:
+          type: object
+          properties:
+            Code:
+              type: string
+            Message:
+              type: string
+            Details:
+              type: array
+              items:
+                type: string
+  responses:
+    ServiceUnavailable:
+      description: Too many requests or server is busy, retry later
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        text/html:
+          schema:
+            type: string
+    NotFound:
+      description: The input record was not found (e.g. invalid CID)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: Request is improperly formed (syntax error in the URL, POST body, etc.)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Timeout:
+      description: The request timed out, from server overload or too broad a request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
