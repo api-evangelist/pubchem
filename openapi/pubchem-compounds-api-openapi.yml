@@ -405,6 +405,71 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    InformationList:
+      type: object
+      description: List of information records
+      properties:
+        InformationList:
+          type: object
+          properties:
+            Information:
+              type: array
+              items:
+                type: object
+                properties:
+                  CID:
+                    type: integer
+                  SID:
+                    type: integer
+                  AID:
+                    type: integer
+                  Synonym:
+                    type: array
+                    items:
+                      type: string
+                  Title:
+                    type: string
+                  Description:
+                    type: string
+    Fault:
+      type: object
+      description: Error response
+      properties:
+        Fault:
+          type: object
+          properties:
+            Code:
+              type: string
+            Message:
+              type: string
+            Details:
+              type: array
+              items:
+                type: string
+    CompoundRecord:
+      type: object
+      description: A single compound record
+      properties:
+        id:
+          type: object
+          properties:
+            id:
+              type: object
+              properties:
+                cid:
+                  type: integer
+        atoms:
+          type: object
+        bonds:
+          type: object
+        stereo:
+          type: array
+          items:
+            type: object
+        props:
+          type: array
+          items:
+            type: object
     PropertyTable:
       type: object
       description: Table of compound properties
@@ -451,47 +516,6 @@ components:
                     type: integer
                   HeavyAtomCount:
                     type: integer
-    InformationList:
-      type: object
-      description: List of information records
-      properties:
-        InformationList:
-          type: object
-          properties:
-            Information:
-              type: array
-              items:
-                type: object
-                properties:
-                  CID:
-                    type: integer
-                  SID:
-                    type: integer
-                  AID:
-                    type: integer
-                  Synonym:
-                    type: array
-                    items:
-                      type: string
-                  Title:
-                    type: string
-                  Description:
-                    type: string
-    Fault:
-      type: object
-      description: Error response
-      properties:
-        Fault:
-          type: object
-          properties:
-            Code:
-              type: string
-            Message:
-              type: string
-            Details:
-              type: array
-              items:
-                type: string
     CompoundRecords:
       type: object
       description: Collection of compound records
@@ -500,43 +524,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CompoundRecord'
-    CompoundRecord:
-      type: object
-      description: A single compound record
-      properties:
-        id:
-          type: object
-          properties:
-            id:
-              type: object
-              properties:
-                cid:
-                  type: integer
-        atoms:
-          type: object
-        bonds:
-          type: object
-        stereo:
-          type: array
-          items:
-            type: object
-        props:
-          type: array
-          items:
-            type: object
   responses:
-    ServiceUnavailable:
-      description: Too many requests or server is busy, retry later
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Fault'
-        text/html:
-          schema:
-            type: string
     NotFound:
       description: The input record was not found (e.g. invalid CID)
       content:
@@ -555,3 +543,15 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/Fault'
+    ServiceUnavailable:
+      description: Too many requests or server is busy, retry later
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Fault'
+        text/html:
+          schema:
+            type: string
