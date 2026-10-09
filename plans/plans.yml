@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: PubChem API Plans
 description: PubChem is a free, open-access service provided by the National Center for Biotechnology Information (NCBI), a division of the National Library of Medicine (NLM) at the U.S. National Institutes of Health (NIH). There are no paid plans or subscription tiers. All APIs are publicly available without charge. An optional NCBI API key can be registered to increase rate limits.
 
@@ -62,3 +66,21 @@ notes:
   - Excessive use that impacts service availability may result in IP-based throttling or blocking.
   - For very large data needs, FTP bulk downloads are available at ftp://ftp.ncbi.nlm.nih.gov/pubchem/.
   - Academic and commercial users are equally welcome at no cost.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Anonymous Access
+    access: free
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Registered API Key Access
+    access: free
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []

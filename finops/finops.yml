@@ -1,3 +1,11 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+# Coverage demoted 2026-10-07 (roadmap#942, PLAN.md Stage A): this file was written by an API Evangelist
+# sweep and names no billing unit, meters or pricing category read from the provider — it restates the
+# FinOps framework. It is `x-coverage: unmeasured`, and the FOCUS alignment it claimed has been removed.
+x-coverage: unmeasured
+method: generated
 name: PubChem API FinOps
 description: PubChem is a free public resource funded by the U.S. National Institutes of Health (NIH) through the National Library of Medicine (NLM) and the National Center for Biotechnology Information (NCBI). There are no costs, subscription fees, or usage-based charges for any PubChem API or data service. All data and APIs are freely available to all users worldwide.
 
